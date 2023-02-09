@@ -40,7 +40,7 @@ public class script : MonoBehaviour
         ScrollInactive();
 
         // 클릭한 버튼 이름 가져오기
-        string buttonName = GameObject.Find("GameObject").GetComponent<SceneChanger>().ButtonName();
+        string buttonName = GameObject.Find("GameObject").GetComponent<SceneChanger>().ButtonName(0);
         print(buttonName);
         
         // 클릭한 해당 버튼의 스크롤 생성

@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: angry
+  m_Name: look_joy
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -22,7 +22,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 85.2
+        value: 65.3
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -32,26 +32,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: blendShape.viseme_O
-    path: Renderer_Head
-    classID: 137
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 96.8
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: blendShape.mouthLeft
+    attribute: blendShape.mouthSmile
     path: Renderer_Head
     classID: 137
     script: {fileID: 0}
@@ -70,7 +51,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: blendShape.browDownLeft
+    attribute: blendShape.eyeBlinkLeft
     path: Renderer_Head
     classID: 137
     script: {fileID: 0}
@@ -89,7 +70,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: blendShape.browDownRight
+    attribute: blendShape.eyeBlinkRight
     path: Renderer_Head
     classID: 137
     script: {fileID: 0}
@@ -103,28 +84,21 @@ AnimationClip:
     genericBindings:
     - serializedVersion: 2
       path: 4158555582
-      attribute: 2437411477
+      attribute: 1494258734
       script: {fileID: 0}
       typeID: 137
       customType: 20
       isPPtrCurve: 0
     - serializedVersion: 2
       path: 4158555582
-      attribute: 1046404055
+      attribute: 931550794
       script: {fileID: 0}
       typeID: 137
       customType: 20
       isPPtrCurve: 0
     - serializedVersion: 2
       path: 4158555582
-      attribute: 3066150191
-      script: {fileID: 0}
-      typeID: 137
-      customType: 20
-      isPPtrCurve: 0
-    - serializedVersion: 2
-      path: 4158555582
-      attribute: 1555957629
+      attribute: 1642583361
       script: {fileID: 0}
       typeID: 137
       customType: 20
@@ -156,7 +130,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 85.2
+        value: 65.3
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -166,26 +140,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: blendShape.viseme_O
-    path: Renderer_Head
-    classID: 137
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 96.8
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: blendShape.mouthLeft
+    attribute: blendShape.mouthSmile
     path: Renderer_Head
     classID: 137
     script: {fileID: 0}
@@ -204,7 +159,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: blendShape.browDownLeft
+    attribute: blendShape.eyeBlinkLeft
     path: Renderer_Head
     classID: 137
     script: {fileID: 0}
@@ -223,7 +178,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: blendShape.browDownRight
+    attribute: blendShape.eyeBlinkRight
     path: Renderer_Head
     classID: 137
     script: {fileID: 0}

@@ -21,7 +21,7 @@ public class SceneChanger : MonoBehaviour
     }
     
     // 클릭한 버튼 이름 추출 함수
-    public string ButtonName()
+    public string ButtonName(int a)
     {
         // 클릭한 버튼 오브젝트의 이름 저장
         string objectName = EventSystem.current.currentSelectedGameObject.name;
@@ -29,18 +29,28 @@ public class SceneChanger : MonoBehaviour
         print("버튼 클릭");
         print("버튼 이름: " + objectName);
 
-        // 버튼 이름을 '_' 기준으로 자르기
-        int strIndex = objectName.LastIndexOf('_');
-        string buttonName = objectName.Substring(strIndex + 1);
+        if (a == 0)
+        {
+            // 버튼 이름을 '_' 기준으로 자르기
+            int strIndex = objectName.LastIndexOf('_');
+            string buttonName = objectName.Substring(strIndex + 1);
 
-        return buttonName;
+            return buttonName;
+        }
+
+        else
+        {
+            return objectName;
+        }
+
+        
     }
 
 
     // 씬 변환 함수
     public void SceneChange()
     {
-        string sceneName = ButtonName();
+        string sceneName = ButtonName(0);
 
         // 씬 변환
         SceneManager.LoadScene(sceneName);

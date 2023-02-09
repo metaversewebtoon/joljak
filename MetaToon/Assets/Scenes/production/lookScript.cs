@@ -25,8 +25,7 @@ public class lookScript : MonoBehaviour
 
     public void LookApply()
     {
-        string buttonName = GameObject.Find("GameObject").GetComponent<SceneChanger>().ButtonName();
-        
+        string buttonName = GameObject.Find("GameObject").GetComponent<SceneChanger>().ButtonName(1);
 
         animator.runtimeAnimatorController = (RuntimeAnimatorController)RuntimeAnimatorController.Instantiate(Resources.Load(buttonName, typeof(RuntimeAnimatorController)));
     }
