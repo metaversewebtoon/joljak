@@ -7,11 +7,10 @@ public class AttachScript : MonoBehaviour
 {
     URL urlScript;
 
-    // Start is called before the first frame update
     public void OnClick()
     {
-        urlScript = GameObject.Find("InputField (TMP)").GetComponent<URL>();
-        Debug.Log("btn clicked");
+        urlScript = GameObject.Find("InputURL").GetComponent<URL>();
+        Debug.Log("Attaching FullBodyIKBehaviour Script to Avatar");
         doAttachScript(urlScript.avatarName[0]); // 아바타에 자세조정 스크립트 적용
     }
     public void doAttachScript(string name)
