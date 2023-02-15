@@ -15,4 +15,6 @@ public class dragScript : MonoBehaviour
         Vector3 objPosition = Camera.main.ScreenToWorldPoint(mousePosition);
         transform.position = objPosition;
     }
+
+
 }
