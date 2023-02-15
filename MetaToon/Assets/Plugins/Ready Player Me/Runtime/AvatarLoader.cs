@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using System.Threading.Tasks;
 
 namespace ReadyPlayerMe
 {
@@ -42,12 +43,12 @@ namespace ReadyPlayerMe
         }
 
         /// Load avatar from given url
-        public void LoadAvatar(string url)
+        public async Task LoadAvatar(string url)
         {
             startTime = Time.timeSinceLevelLoad;
             SDKLogger.Log(TAG, $"Started loading avatar with config {(AvatarConfig ? AvatarConfig.name : "None")} from URL {url}");
             avatarUrl = url;
-            Load(url);
+            await Load(url);
         }
 
         /// Cancel avatar loading
@@ -56,7 +57,7 @@ namespace ReadyPlayerMe
             executor.Cancel();
         }
 
-        private async void Load(string url)
+        private async Task Load(string url)
         {
             var context = new AvatarContext();
             context.Url = url;
