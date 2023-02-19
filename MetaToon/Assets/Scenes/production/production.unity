@@ -1088,6 +1088,7 @@ GameObject:
   - component: {fileID: 245227165}
   - component: {fileID: 245227164}
   - component: {fileID: 245227163}
+  - component: {fileID: 245227166}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1161,6 +1162,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &245227166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 245227162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a84a3e696c723424aafdb3032ecc6f80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotateSpeed: 10
+  scrollSpeed: 2000
 --- !u!1 &252428316
 GameObject:
   m_ObjectHideFlags: 0
@@ -2095,7 +2110,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1722238212}
-        m_TargetAssemblyTypeName: lookScript1, Assembly-CSharp
+        m_TargetAssemblyTypeName: lookScript, Assembly-CSharp
         m_MethodName: LookAply
         m_Mode: 1
         m_Arguments:

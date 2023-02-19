@@ -737,7 +737,7 @@ GameObject:
   - component: {fileID: 8687176689660132829}
   m_Layer: 0
   m_Name: avatar_1_prefab
-  m_TagString: Untagged
+  m_TagString: avatar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

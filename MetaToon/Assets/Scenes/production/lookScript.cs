@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class lookScript1 : MonoBehaviour
+public class lookScript : MonoBehaviour
 {
     string avatarName;
 
@@ -25,8 +25,13 @@ public class lookScript1 : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit))
             {
-                Debug.Log(hit.transform.name);
-                avatarName = hit.transform.name;
+                if (hit.transform.CompareTag("avatar"))
+                {
+                    Debug.Log(hit.transform.name);
+                    avatarName = hit.transform.name;
+                }
+                
+                
 
             }
         }
