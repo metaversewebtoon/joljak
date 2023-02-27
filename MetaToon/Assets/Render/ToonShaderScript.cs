@@ -5,7 +5,7 @@ using UnityEngine;
 public class ToonShaderScript : MonoBehaviour
 {
     public Shader replacementShader;
-    public string replacementTag = "";
+    public string replacementTag = "Opaque";
 
     void Start()
     {
