@@ -38,6 +38,7 @@
 		Pass
 		{
 			Tags{ "LightMode" = "ForwardBase" }
+			Tags{ "RenderType" = "Opaque" }
 
 			CGPROGRAM
 			#pragma vertex vert
