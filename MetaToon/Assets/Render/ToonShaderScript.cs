@@ -2,14 +2,17 @@ using UnityEngine;
 
 [ExecuteInEditMode]
 [RequireComponent(typeof(Camera))]
+
 public class ToonShaderScript : MonoBehaviour
 {
+    // Choose a shader to use from inspector menu
     public Shader replacementShader;
-    public string replacementTag = "Opaque";
 
     void Start()
     {
         Camera cam = GetComponent<Camera>();
-        cam.SetReplacementShader(replacementShader, replacementTag);
+        // replacementShader : The shader to use for every game object captured through camera.
+        // "" : Render type tag(e.g. Opaque, Transparent). Empty by default.
+        cam.SetReplacementShader(replacementShader, "");
     }
 }
