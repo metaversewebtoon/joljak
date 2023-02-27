@@ -1,4 +1,4 @@
-﻿Shader "GLTFUtility/Standard (Metallic)"
+﻿Shader "ywe/ToonShader"
 {
 	Properties
 	{
