@@ -10,8 +10,10 @@ using EditorUtil = SA.FullBodyIKEditorUtility;
 
 namespace SA
 {
-	[CustomEditor( typeof( SA.FullBodyIKUnityChanBehaviour ) )]
+	//[CustomEditor( typeof( SA.FullBodyIKUnityChanBehaviour ) )]
+#if UNITY_EDITOR
 	public class FullBodyIKUnityChanInspector : FullBodyIKInspectorBase
 	{
 	}
+#endif
 }
