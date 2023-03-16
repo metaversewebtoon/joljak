@@ -1,9 +1,12 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 [ExecuteInEditMode]
 [RequireComponent(typeof(Camera))]
 
-public class ToonShaderScript : MonoBehaviour
+public class CameraScript : MonoBehaviour
 {
     // Choose a shader to use from inspector menu
     public Shader replacementShader;
