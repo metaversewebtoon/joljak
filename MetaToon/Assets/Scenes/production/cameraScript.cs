@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class cameraScript : MonoBehaviour
 {
@@ -20,8 +21,12 @@ public class cameraScript : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0)) clickPoint = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
 
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject())
         {
+            GameObject.Find("GameObject").GetComponent<scrollScript>().ScrollInactive();
+            GameObject.Find("GameObject").GetComponent<objectClickScript>().InterfaceInActive();
+
+
             if (isAlt)
             {
                 Vector3 position = Camera.main.ScreenToViewportPoint((Vector2)Input.mousePosition - clickPoint);

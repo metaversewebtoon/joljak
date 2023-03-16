@@ -735,6 +735,7 @@ GameObject:
   - component: {fileID: 6376520330794495137}
   - component: {fileID: 6856711114739689506}
   - component: {fileID: 8687176689660132829}
+  - component: {fileID: 5912529446332535894}
   m_Layer: 0
   m_Name: avatar_1_prefab
   m_TagString: avatar
@@ -828,6 +829,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 2, z: 1}
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &5912529446332535894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2094665717595888504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e978288e6a0be5c4bba75c444b89509d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2121322908208793403
 GameObject:
   m_ObjectHideFlags: 0

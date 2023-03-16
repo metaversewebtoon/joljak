@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class lookScript : MonoBehaviour
 {
-    string avatarName;
+    public GameObject avatar;
 
     // Start is called before the first frame update
     void Start()
@@ -15,34 +15,15 @@ public class lookScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-            Debug.DrawRay(this.transform.position + Vector3.up, Vector3.forward * 10, Color.red);
-
-            RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit))
-            {
-                if (hit.transform.CompareTag("avatar"))
-                {
-                    Debug.Log(hit.transform.name);
-                    avatarName = hit.transform.name;
-                }
-                
-                
-
-            }
-        }
+       
     }
 
     public void LookAply()
     {
         string lookName = GameObject.Find("GameObject").GetComponent<SceneChanger>().ButtonName(1);
-        Animator animator = GameObject.Find(avatarName).GetComponent<Animator>();
+        Animator animator = avatar.GetComponent<Animator>();
         animator.runtimeAnimatorController = (RuntimeAnimatorController)RuntimeAnimatorController.Instantiate(Resources.Load(lookName, typeof(RuntimeAnimatorController)));
 
-
+        // 만약 캐릭터 선택 전에 표정 선택시 알림 메시지 
     }
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class script : MonoBehaviour
+public class scrollScript : MonoBehaviour
 {
     public GameObject scroll_background;
     public GameObject scroll_element;

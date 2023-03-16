@@ -23,6 +23,6 @@ public class prefabScript : MonoBehaviour
 
         GameObject obj = Instantiate(Resources.Load<GameObject>(prefabName));
 
-        GameObject.Find("GameObject").GetComponent<script>().ScrollInactive();
+        
     }
 }
