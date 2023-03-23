@@ -3,43 +3,51 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class SendImage : MonoBehaviour
+namespace Woo
 {
-    private string ImgString = "Base64 String";
-    // Start is called before the first frame update
-    void Start()
+    public class SendImage : MonoBehaviour
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    IEnumerator SendString()
-    {
-        // Create a form to send the string to the server
-        WWWForm form = new WWWForm();
-        form.AddField("image string", ImgString);
-
-        // Create a UnityWebRequest to send the form to the server
-        UnityWebRequest request = UnityWebRequest.Post("/*서버 주소*/", form);
-        yield return request.SendWebRequest();
-
-        // Check for errors
-        if (request.result != UnityWebRequest.Result.Success)
+        private string ImgString = "Base64 String";
+        // Start is called before the first frame update
+        void Start()
         {
-            Debug.Log(request.error);
-        }
-        else
-        {
-            Debug.Log("String sent successfully");
+            StartCoroutine(SendString());
         }
 
+        // Update is called once per frame
+        void Update()
+        {
+
+        }
+
+        public IEnumerator SendString()
+        {
+            // Create a form to send the string to the server
+            WWWForm form = new WWWForm();
+            form.AddField("email", "aaa@aaa.com");
+            form.AddField("password", "1234");
+            form.AddField("name", "Woo");
+
+            // Create a UnityWebRequest to send the form to the server
+            using(UnityWebRequest request = UnityWebRequest.Post("192.168.82.71:3000/api/user/register", form))
+            {
+                yield return request.SendWebRequest();
+
+                // Check for errors
+                if (request.result != UnityWebRequest.Result.Success)
+                {
+                    Debug.Log(request.error);
+                }
+                else
+                {
+                    Debug.Log("String sent successfully");
+                }
+            }
+
+        }
     }
 }
+
 
 /* node.js 서버 javascript
 
