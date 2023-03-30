@@ -12,7 +12,7 @@ public class ImageEditor : MonoBehaviour
 {
     private string dirName = "Assets/Render/Screenshots";
     private string fileName = "TestImage.png";
-    private string server = "192.168.82.71:3000";
+    private string server = "192.168.63.116:3000";
     private byte[] pngArray;
 
     public Button btn_CaptureScreen; // Button for Capturing screen
@@ -59,12 +59,8 @@ public class ImageEditor : MonoBehaviour
 
                 // Convert Image to Base64 String
                 byte[] imageData = File.ReadAllBytes(fullPath);
-                Texture2D texture = new Texture2D(0, 0);
-                texture.LoadImage(imageData);
-                string base64String = TextureToBase64(texture);
-                Debug.Log("Base64 String : " + base64String);
-                StartCoroutine(SendString(base64String, imageData));
-                StartCoroutine(GetByte());
+                StartCoroutine(SendString(imageData));
+                //StartCoroutine(GetByte());
             }
             catch (System.Exception e)
             {
@@ -77,19 +73,15 @@ public class ImageEditor : MonoBehaviour
         }
     }
 
-    public IEnumerator SendString(String base64String, byte[] imageData)
+    public IEnumerator SendString(byte[] imageData)
     {
         // Create a form to send the string to the server
         WWWForm form = new WWWForm();
-        WWWForm form2 = new WWWForm();
-        form.AddField("email", "ddd@ddd.com");
-        form.AddField("password", "1234");
-        form.AddField("name", base64String);
 
-        form2.AddBinaryData("file", imageData, "Woo.png", "image/png");
+        form.AddBinaryData("file", imageData, "Woo.png", "image/png");
 
         // Create a UnityWebRequest to send the form to the server
-        using (UnityWebRequest requestPost = UnityWebRequest.Post("http://" + server + "/file/upload", form2))
+        using (UnityWebRequest requestPost = UnityWebRequest.Post("http://" + server + "/file/upload", form))
         {
             yield return requestPost.SendWebRequest();
 
@@ -105,6 +97,7 @@ public class ImageEditor : MonoBehaviour
         }
     }
 
+    /* 데이터 받아오기
     public IEnumerator GetByte()
     {
         DirectoryInfo screenshotDirectory = Directory.CreateDirectory(dirName);
@@ -128,6 +121,8 @@ public class ImageEditor : MonoBehaviour
             }
         }
     }
+    */
+
     public static Texture2D BytesToTexture2D(byte[] bytes)
     {
         Texture2D texture = new Texture2D(1, 1);
