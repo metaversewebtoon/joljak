@@ -10,6 +10,10 @@ public class ControlTarget : MonoBehaviour
 
     private bool isDragged;
     private RaycastHit _downHit;
+    private Vector3 _downMousePoint;
+    private Vector3 deltaPos;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,9 +30,15 @@ public class ControlTarget : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            float distance = Vector3.Distance(transform.position, Camera.main.transform.position);
+            Vector3 rayPoint = ray.GetPoint(distance);
 
             if (Physics.Raycast(ray, out _downHit))
+            {
                 isDragged = true;
+                _downMousePoint = ray.GetPoint(distance);
+                deltaPos =   _downMousePoint - transform.position;
+            }
         }
 
         if (Input.GetMouseButton(0) && isDragged)
@@ -36,20 +46,14 @@ public class ControlTarget : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             float distance = Vector3.Distance(transform.position, Camera.main.transform.position);
             Vector3 rayPoint = ray.GetPoint(distance);
-
+            
 
             if (_downHit.transform.Equals(X))
-            {
-                transform.position = new Vector3(rayPoint.x, transform.position.y, transform.position.z);
-            }
+                transform.position = new Vector3(rayPoint.x-deltaPos.x, transform.position.y, transform.position.z);
             else if (_downHit.transform.Equals(Y))
-            {
-                transform.position = new Vector3(transform.position.x, rayPoint.y, transform.position.z);
-            }
+                transform.position = new Vector3(transform.position.x, rayPoint.y - deltaPos.y, transform.position.z);
             else if (_downHit.transform.Equals(Z))
-            {
-                transform.position = new Vector3(transform.position.x, transform.position.y, rayPoint.x);
-            }
+                transform.position = new Vector3(transform.position.x, transform.position.y, rayPoint.z - deltaPos.z);
         }
 
         if (Input.GetMouseButtonUp(0))
