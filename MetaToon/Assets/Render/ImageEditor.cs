@@ -12,7 +12,7 @@ public class ImageEditor : MonoBehaviour
 {
     private string dirName = "Assets/Render/Screenshots";
     private string fileName = "TestImage.png";
-    private string server = "192.168.63.116:3000";
+    private string server = "34.145.65.5:46351";
     private byte[] pngArray;
 
     public Button btn_CaptureScreen; // Button for Capturing screen
@@ -57,7 +57,7 @@ public class ImageEditor : MonoBehaviour
                 ScreenCapture.CaptureScreenshot(fullPath);
                 Debug.Log("Saved Screenshot : " + fullPath);
 
-                // Convert Image to Base64 String
+                // Send Byte array of the image to DB
                 byte[] imageData = File.ReadAllBytes(fullPath);
                 StartCoroutine(SendString(imageData));
                 //StartCoroutine(GetByte());
@@ -92,7 +92,7 @@ public class ImageEditor : MonoBehaviour
             }
             else
             {
-                Debug.Log("String sent successfully");
+                Debug.Log("Image sent successfully");
             }
         }
     }
