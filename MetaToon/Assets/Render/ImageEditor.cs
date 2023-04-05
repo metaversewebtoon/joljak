@@ -13,7 +13,7 @@ public class ImageEditor : MonoBehaviour
     private string dirName = "Assets/Render/Screenshots";
     private string fileName = "TestImage.png";
     private string server = "34.145.65.5:46351";
-    private byte[] pngArray;
+    private byte[] pngArray; // Byte array of the Image
 
     public Button btn_CaptureScreen; // Button for Capturing screen
     public GameObject UserInterface; // Set UI(e.g. Canvas) from inspector menu
@@ -75,10 +75,10 @@ public class ImageEditor : MonoBehaviour
 
     public IEnumerator SendString(byte[] imageData)
     {
-        // Create a form to send the string to the server
+        // Create a form to send the byte array to the server
         WWWForm form = new WWWForm();
 
-        form.AddBinaryData("file", imageData, "Woo.png", "image/png");
+        form.AddBinaryData("file", imageData, "Test.png", "image/png");
 
         // Create a UnityWebRequest to send the form to the server
         using (UnityWebRequest requestPost = UnityWebRequest.Post("http://" + server + "/file/upload", form))
