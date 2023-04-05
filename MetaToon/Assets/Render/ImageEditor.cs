@@ -1,15 +1,15 @@
 using System.Collections;
-using System.Collections.Generic;
-using Microsoft.Cci;
 using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
-using System;
+using UnityEngine.Networking;
 
 public class ImageEditor : MonoBehaviour
 {
     private string dirName = "Assets/Render/Screenshots";
     private string fileName = "TestImage.png";
+    private string server = "34.145.65.5:46351";
+    private byte[] pngArray; // Byte array of the Image
 
     public Button btn_CaptureScreen; // Button for Capturing screen
     public GameObject UserInterface; // Set UI(e.g. Canvas) from inspector menu
@@ -53,12 +53,9 @@ public class ImageEditor : MonoBehaviour
                 ScreenCapture.CaptureScreenshot(fullPath);
                 Debug.Log("Saved Screenshot : " + fullPath);
 
-                // Convert Image to Base64 String
+                // Send Byte array of the image to DB
                 byte[] imageData = File.ReadAllBytes(fullPath);
-                Texture2D texture = new Texture2D(0, 0);
-                texture.LoadImage(imageData);
-                string base64String = TextureToBase64(texture);
-                Debug.Log("Base64 String : " + base64String);
+                StartCoroutine(SendString(imageData));
             }
             catch (System.Exception e)
             {
@@ -71,11 +68,27 @@ public class ImageEditor : MonoBehaviour
         }
     }
 
-    // Convert Image Texture to Base64 String
-    public static string TextureToBase64(Texture2D texture)
+    public IEnumerator SendString(byte[] imageData)
     {
-        byte[] bytes = texture.EncodeToPNG();
-        string base64String = Convert.ToBase64String(bytes);
-        return base64String;
+        // Create a form to send the byte array to the server
+        WWWForm form = new WWWForm();
+
+        form.AddBinaryData("file", imageData, "Test.png", "image/png");
+
+        // Create a UnityWebRequest to send the form to the server
+        using (UnityWebRequest requestPost = UnityWebRequest.Post("http://" + server + "/file/upload", form))
+        {
+            yield return requestPost.SendWebRequest();
+
+            // Check for errors
+            if (requestPost.result != UnityWebRequest.Result.Success)
+            {
+                Debug.Log(requestPost.error);
+            }
+            else
+            {
+                Debug.Log("Image sent successfully");
+            }
+        }
     }
 }
