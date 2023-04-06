@@ -18,7 +18,7 @@ public class AttachControlTarget : MonoBehaviour
         _poseTable = Resources.Load<PoseTable>($"Tables/Pose/PoseTable");
         _fullbodyik = this.gameObject.GetComponent<FullBodyIKBehaviour>().fullBodyIK;
         _controlObject = new ControlObject();
-        _controlObject.SetControlObjectsTransform(_fullbodyik, _poseTable.controlPrefab);
+        _controlObject.SetControlObjectsTransform(_fullbodyik, _poseTable.controlPrefab, this.transform);
 
 
     }

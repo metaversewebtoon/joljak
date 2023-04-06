@@ -7925,7 +7925,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f96c88994b1851a409a6dba010d323d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _controlObjectPrefab: {fileID: 0}
 --- !u!1 &1312690925
 GameObject:
   m_ObjectHideFlags: 0
@@ -8174,6 +8173,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 83e9c61c45217a54fb3c6777b61c793d, type: 3}
+--- !u!1 &1501201908 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 276415520883825494, guid: 83e9c61c45217a54fb3c6777b61c793d, type: 3}
+  m_PrefabInstance: {fileID: 1501201907}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1501201909
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1501201908}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.17173095, y: 0.2524718, z: 1}
+  m_Center: {x: -0.006454496, y: 0.07133301, z: -0.000000006558153}
 --- !u!1 &1503265880
 GameObject:
   m_ObjectHideFlags: 0
