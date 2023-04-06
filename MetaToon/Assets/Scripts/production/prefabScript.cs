@@ -23,6 +23,9 @@ public class prefabScript : MonoBehaviour
 
         GameObject obj = Instantiate(Resources.Load<GameObject>(prefabName));
 
-        
+        obj.AddComponent<SA.FullBodyIKBehaviour>();
+        obj.AddComponent<AttachControlTarget>();
+
+
     }
 }
