@@ -5,7 +5,7 @@ using SA;
 
 public class AttachControlTarget : MonoBehaviour
 {
-    public GameObject _controlObjectPrefab;
+    private PoseTable _poseTable;
 
     private List<Transform> _controlTargetList;
     private List<Transform> _boneList;
@@ -15,12 +15,11 @@ public class AttachControlTarget : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       
+        _poseTable = Resources.Load<PoseTable>($"Tables/Pose/PoseTable");
         _fullbodyik = this.gameObject.GetComponent<FullBodyIKBehaviour>().fullBodyIK;
         _controlObject = new ControlObject();
-        _controlObject.SetControlObjectsTransform(_fullbodyik, _controlObjectPrefab);
+        _controlObject.SetControlObjectsTransform(_fullbodyik, _poseTable.controlPrefab);
 
-        _fullbodyik.rightArmEffectors.wrist.worldPosition = _controlObjectPrefab.transform.position;
 
     }
 

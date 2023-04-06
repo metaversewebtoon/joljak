@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72c05a5f073ef4c4d9ebf42611aa7a24, type: 3}
   m_Name: PoseTable
   m_EditorClassIdentifier: 
-  controlPrefab: {fileID: 0}
+  controlPrefab: {fileID: 5411372304700656341, guid: 88793cb5fbd0d0d4ea9f04eb46fc0117, type: 3}
