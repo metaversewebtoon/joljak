@@ -55,6 +55,9 @@ public class scrollScript : MonoBehaviour
         else if (buttonName.Equals("character"))
         {
             scroll_character.SetActive(true);
+            //temp
+            scroll_character.AddComponent<SA.FullBodyIKBehaviour>();
+            scroll_character.AddComponent<AttachControlTarget>();
         }
         else if (buttonName.Equals("pose"))
         {
