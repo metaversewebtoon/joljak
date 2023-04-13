@@ -2,11 +2,14 @@
 // Released under the MIT license
 // http://opensource.org/licenses/mit-license.php
 using UnityEngine;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 using System.Collections.Generic;
 
 namespace SA
 {
+#if UNITY_EDITOR
 	public static class FullBodyIKEditorUtility
 	{
 #if UNITY_5_0 || UNITY_5_1 || UNITY_5_2
@@ -258,4 +261,5 @@ namespace SA
 			}
 		}
 	}
+#endif
 }

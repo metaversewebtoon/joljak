@@ -5,6 +5,7 @@ using UnityEditor;
 
 namespace ywe.Blendshapes
 {
+#if UNITY_EDITOR
     [CustomEditor(typeof(BlendShapeSlider))]
     public class BlendShapeSliderEditor : Editor
     {
@@ -73,5 +74,6 @@ namespace ywe.Blendshapes
 
         }
 
-    } 
+    }
+#endif
 }

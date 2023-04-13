@@ -2,12 +2,16 @@
 // Released under the MIT license
 // http://opensource.org/licenses/mit-license.php
 using UnityEngine;
+#if UNITY_EDITOR
 using UnityEditor;
-using System.Collections.Generic;
 using EditorUtil = SA.FullBodyIKEditorUtility;
+#endif
+using System.Collections.Generic;
+
 
 namespace SA
 {
+#if UNITY_EDITOR
 	public class FullBodyIKInspectorBase : Editor
 	{
 		bool _initializedGUIStyle;
@@ -587,4 +591,5 @@ namespace SA
 	public class FullBodyIKInspector : FullBodyIKInspectorBase
 	{
 	}
+#endif
 }
