@@ -16,8 +16,6 @@ public class Register : MonoBehaviour
     public Button submitBtn;
     public TMP_Text errorText;
 
-    public string login = "Login";
-
     public void Start()
     {
         errorText.text = "";
@@ -31,10 +29,10 @@ public class Register : MonoBehaviour
     IEnumerator Registering()
     {
         WWWForm form = new WWWForm();
-        form.AddField("id", idField.text);
+        form.AddField("email", idField.text);
         form.AddField("password", passwordField.text);
-        form.AddField("username", nameField.text);
-        using(UnityWebRequest requestPost = UnityWebRequest.Post("http://ip_addr/api/user/register", form))
+        form.AddField("name", nameField.text);
+        using(UnityWebRequest requestPost = UnityWebRequest.Post("http://34.145.65.5:46351/api/user/register", form))
         {
             yield return requestPost.SendWebRequest();
 
@@ -47,7 +45,7 @@ public class Register : MonoBehaviour
             else
             {
                 Debug.Log("Info sent successfully");
-                SceneManager.LoadScene(login);
+                SceneManager.LoadScene("LoginScene");
             }
         }
     }
