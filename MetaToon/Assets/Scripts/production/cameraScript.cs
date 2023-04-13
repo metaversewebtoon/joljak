@@ -6,15 +6,21 @@ using UnityEngine.EventSystems;
 public class cameraScript : MonoBehaviour
 {
     public float rotateSpeed = 500.0f;
-    public float scrollSpeed = 2000.0f;
+    public float scrollSpeed = 10.0f;
     float dragSpeed = 30.0f;
     private float xRotate, yRotate, xRotateMove, yRotateMove;
 
     bool isAlt;
     Vector2 clickPoint;
-    
 
-    void Update()
+    private Transform _lookTarget;
+
+	private void Start()
+	{
+		
+	}
+
+	void Update()
     {
         if (Input.GetKeyDown(KeyCode.LeftAlt)) isAlt = true;
         if (Input.GetKeyUp(KeyCode.LeftAlt)) isAlt = false;
@@ -51,12 +57,13 @@ public class cameraScript : MonoBehaviour
 
                 transform.eulerAngles = new Vector3(xRotate, yRotate, 0);
             }
+
         }
         else
         {
             float scroollWheel = Input.GetAxis("Mouse ScrollWheel");
-
-            Camera.main.fieldOfView += scroollWheel * Time.deltaTime * scrollSpeed;
+            Vector3 targetPos = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z + scroollWheel * Time.deltaTime * scrollSpeed);
+            this.transform.position = Vector3.Lerp(this.transform.position, targetPos, Time.deltaTime * 1);
 
         }
     }
