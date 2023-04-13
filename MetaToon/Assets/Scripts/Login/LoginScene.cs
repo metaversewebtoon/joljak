@@ -16,8 +16,6 @@ public class LoginScene : MonoBehaviour
 
     public TMP_Text errorText;
 
-    public string main = "main";
-
     public void Start()
     {
         errorText.text = "";
@@ -31,9 +29,9 @@ public class LoginScene : MonoBehaviour
     IEnumerator Login()
     {
         WWWForm form = new WWWForm();
-        form.AddField("id", idField.text);
+        form.AddField("email", idField.text);
         form.AddField("password", passwordField.text);
-        using (UnityWebRequest requestPost = UnityWebRequest.Post("http://ip_addr/api/user/login", form))
+        using (UnityWebRequest requestPost = UnityWebRequest.Post("http://34.145.65.5:46351/api/user/login", form))
         {
             yield return requestPost.SendWebRequest();
 
@@ -48,7 +46,7 @@ public class LoginScene : MonoBehaviour
             if (requestPost.responseCode == 200)
             {
                 Debug.Log("User logged in successfully");
-                SceneManager.LoadScene(main);
+                SceneManager.LoadScene("main");
             }
             else
             {
