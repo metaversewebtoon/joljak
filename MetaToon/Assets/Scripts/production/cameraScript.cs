@@ -30,8 +30,6 @@ public class cameraScript : MonoBehaviour
         if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject())
         {
             GameObject.Find("GameObject").GetComponent<scrollScript>().ScrollInactive();
-            GameObject.Find("GameObject").GetComponent<objectClickScript>().InterfaceInActive();
-
 
             if (isAlt)
             {

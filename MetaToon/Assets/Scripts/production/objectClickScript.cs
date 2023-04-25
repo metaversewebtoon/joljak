@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// 스크립트 이름 바꾸기 drag->object click
 public class objectClickScript : MonoBehaviour
 {
     public GameObject interface_;
@@ -21,23 +20,22 @@ public class objectClickScript : MonoBehaviour
 
     void OnMouseDrag()
     {
-        //Vector3 mousePosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, distance);
-        //Vector3 objPosition = Camera.main.ScreenToWorldPoint(mousePosition);
-        //transform.position = objPosition;
+
     }
 
     void OnMouseDown()
     {
 
-        interface_ = GameObject.Find("Canvas").transform.Find("interface").gameObject;
+        //interface_ = GameObject.Find("Canvas").transform.Find("interface").gameObject;
 
-        Invoke("InterfaceActive", 0.2f);
+        //Invoke("InterfaceActive", 0.2f);
 
         if (gameObject.CompareTag("avatar"))
         {
             GameObject.Find("GameObject").GetComponent<lookScript>().avatar = gameObject;
         }
         GameObject.Find("GameObject").GetComponent<objectControl>().objectName = gameObject;
+        GameObject.Find("GameObject").GetComponent<ObjectMove>().targetObject = gameObject;
 
     }
     
