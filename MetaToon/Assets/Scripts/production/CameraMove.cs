@@ -33,6 +33,7 @@ public class CameraMove : MonoBehaviour
             _lookVec = Vector3.Normalize(_targetObject.position - this.transform.position);
             _distance = Vector3.Distance(_targetObject.position, this.transform.position);
         }
+        if (Input.GetKeyDown(KeyCode.LeftAlt) && _targetObject) _targetObject = null;
         if (Input.GetMouseButtonDown(0))
         {
             _isDrag = true;
