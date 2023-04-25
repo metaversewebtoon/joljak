@@ -554,8 +554,8 @@ RectTransform:
   m_Father: {fileID: 1819017106}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1942,8 +1942,8 @@ RectTransform:
   m_Father: {fileID: 882200828}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2068,7 +2068,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &374277986
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2906,7 +2906,7 @@ GameObject:
   - component: {fileID: 644725427}
   - component: {fileID: 644725428}
   m_Layer: 5
-  m_Name: pos_x
+  m_Name: silder_x
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2986,9 +2986,9 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1722238213}
-        m_TargetAssemblyTypeName: objectControl2, Assembly-CSharp
-        m_MethodName: PosXControl
+      - m_Target: {fileID: 1722238216}
+        m_TargetAssemblyTypeName: ObjectSize, Assembly-CSharp
+        m_MethodName: sizeXControl
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3015,9 +3015,9 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1722238213}
-          m_TargetAssemblyTypeName: objectControl2, Assembly-CSharp
-          m_MethodName: PosControlOff
+        - m_Target: {fileID: 1722238216}
+          m_TargetAssemblyTypeName: ObjectSize, Assembly-CSharp
+          m_MethodName: sizeControlOff
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -3061,7 +3061,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -3613,8 +3613,8 @@ RectTransform:
   m_Father: {fileID: 874709685}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -6157,7 +6157,7 @@ GameObject:
   - component: {fileID: 1200020697}
   - component: {fileID: 1200020698}
   m_Layer: 5
-  m_Name: pos_z
+  m_Name: slider_z
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6237,9 +6237,9 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1722238213}
-        m_TargetAssemblyTypeName: objectControl2, Assembly-CSharp
-        m_MethodName: PosZControl
+      - m_Target: {fileID: 1722238216}
+        m_TargetAssemblyTypeName: ObjectSize, Assembly-CSharp
+        m_MethodName: sizeZControl
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6266,9 +6266,9 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1722238213}
-          m_TargetAssemblyTypeName: objectControl2, Assembly-CSharp
-          m_MethodName: PosControlOff
+        - m_Target: {fileID: 1722238216}
+          m_TargetAssemblyTypeName: ObjectSize, Assembly-CSharp
+          m_MethodName: sizeControlOff
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -6519,7 +6519,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -6903,7 +6903,7 @@ GameObject:
   - component: {fileID: 1300842638}
   - component: {fileID: 1300842639}
   m_Layer: 5
-  m_Name: pos_y
+  m_Name: slider_y
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6983,9 +6983,9 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1722238213}
-        m_TargetAssemblyTypeName: objectControl2, Assembly-CSharp
-        m_MethodName: PosYControl
+      - m_Target: {fileID: 1722238216}
+        m_TargetAssemblyTypeName: ObjectSize, Assembly-CSharp
+        m_MethodName: sizeYControl
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7012,9 +7012,9 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1722238213}
-          m_TargetAssemblyTypeName: objectControl2, Assembly-CSharp
-          m_MethodName: PosControlOff
+        - m_Target: {fileID: 1722238216}
+          m_TargetAssemblyTypeName: ObjectSize, Assembly-CSharp
+          m_MethodName: sizeControlOff
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -7443,7 +7443,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -9739,8 +9739,8 @@ GameObject:
   - component: {fileID: 1722238210}
   - component: {fileID: 1722238211}
   - component: {fileID: 1722238212}
-  - component: {fileID: 1722238213}
   - component: {fileID: 1722238214}
+  - component: {fileID: 1722238216}
   - component: {fileID: 1722238215}
   m_Layer: 0
   m_Name: GameObject
@@ -9818,22 +9818,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   avatar: {fileID: 0}
---- !u!114 &1722238213
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1722238206}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a771020e47b08d6449c295cec7e3c54d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectName: {fileID: 0}
-  slider_x: {fileID: 644725427}
-  slider_y: {fileID: 1300842638}
-  slider_z: {fileID: 1200020697}
 --- !u!114 &1722238214
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9861,6 +9845,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetObject: {fileID: 0}
   moveSpeed: 5
+--- !u!114 &1722238216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1722238206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 090c088174661a146a6ae393aa6596bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetObject: {fileID: 0}
+  slider_x: {fileID: 644725427}
+  slider_y: {fileID: 1300842638}
+  slider_z: {fileID: 1200020697}
+  size_ui: {fileID: 374277985}
 --- !u!1 &1737508345
 GameObject:
   m_ObjectHideFlags: 0
@@ -11169,7 +11170,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1967685155}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1722238216}
+        m_TargetAssemblyTypeName: ObjectSize, Assembly-CSharp
+        m_MethodName: sizeUiActive
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1967685155
 MonoBehaviour:
   m_ObjectHideFlags: 0
