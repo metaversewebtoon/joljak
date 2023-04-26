@@ -9,54 +9,77 @@ public class cameraScript : MonoBehaviour
     public float scrollSpeed = 10.0f;
     float dragSpeed = 30.0f;
     private float xRotate, yRotate, xRotateMove, yRotateMove;
-
+    LayerMask layerMask;
     bool isAlt;
     Vector2 clickPoint;
 
+    GameObject hitObject;
+
     private Transform _lookTarget;
 
-	private void Start()
-	{
-		
-	}
+    private void Start()
+    {
 
-	void Update()
+    }
+
+    void Update()
     {
         if (Input.GetKeyDown(KeyCode.LeftAlt)) isAlt = true;
         if (Input.GetKeyUp(KeyCode.LeftAlt)) isAlt = false;
-
         if (Input.GetMouseButtonDown(0)) clickPoint = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
 
-        if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject())
+        // 마우스 왼쪽 버튼을 클릭할 때
+        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
         {
+            // 스크롤 비활성화
             GameObject.Find("GameObject").GetComponent<scrollScript>().ScrollInactive();
 
-            if (isAlt)
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition); // 현재 마우스 위치에서 Ray 생성
+
+            RaycastHit hit;
+            // Ray가 충돌한 물체를 인식한 경우 오브젝트 조정
+            if (Physics.Raycast(ray, out hit))
             {
-                Vector3 position = Camera.main.ScreenToViewportPoint((Vector2)Input.mousePosition - clickPoint);
-
-                position.z = position.y;
-                position.y = .0f;
-
-                Vector3 move = position * (Time.deltaTime * dragSpeed);
-
-                transform.Translate(move);
+                hitObject = hit.collider.gameObject;
+                Debug.Log("인식된 물체: " + hitObject.name);
+                if(hitObject.layer != LayerMask.NameToLayer("UI"))
+                {
+                    objectClick();
+                }
             }
+            // 인식된 물체가 없는 경우 카메라 조정
             else
             {
-                xRotateMove = -Input.GetAxis("Mouse Y") * Time.deltaTime * rotateSpeed;
-                yRotateMove = Input.GetAxis("Mouse X") * Time.deltaTime * rotateSpeed;
+                objectClickNo();
+                // Alt키 누른 경우 카메라 이동
+                if (isAlt)
+                {
+                    Vector3 position = Camera.main.ScreenToViewportPoint((Vector2)Input.mousePosition - clickPoint);
 
-                yRotate = transform.eulerAngles.y + yRotateMove;
-                
-                xRotate = xRotate + xRotateMove;
+                    position.z = position.y;
+                    position.y = .0f;
 
-                xRotate = Mathf.Clamp(xRotate, -90, 90); // 위, 아래 고정
+                    Vector3 move = position * (Time.deltaTime * dragSpeed);
 
-                transform.eulerAngles = new Vector3(xRotate, yRotate, 0);
+                    transform.Translate(move);
+                }
+                // Alt키 누르지 않은 경우 카메라 회전
+                else
+                {
+                    xRotateMove = -Input.GetAxis("Mouse Y") * Time.deltaTime * rotateSpeed;
+                    yRotateMove = Input.GetAxis("Mouse X") * Time.deltaTime * rotateSpeed;
+
+                    yRotate = transform.eulerAngles.y + yRotateMove;
+
+                    xRotate = xRotate + xRotateMove;
+
+                    xRotate = Mathf.Clamp(xRotate, -90, 90); // 위, 아래 고정
+
+                    transform.eulerAngles = new Vector3(xRotate, yRotate, 0);
+                }
             }
-
         }
+        // 줌인/줌아웃
         else
         {
             float scroollWheel = Input.GetAxis("Mouse ScrollWheel");
@@ -65,4 +88,29 @@ public class cameraScript : MonoBehaviour
 
         }
     }
+
+    void objectClick()
+    {
+        if (hitObject.layer == LayerMask.NameToLayer("avatar")) 
+        { 
+            GameObject.Find("GameObject").GetComponent<lookScript>().avatar = hitObject;
+        }
+        GameObject.Find("GameObject").GetComponent<ObjectMove>().targetObject = hitObject;
+        GameObject.Find("GameObject").GetComponent<ObjectRotation>().targetObject = hitObject;
+        GameObject.Find("GameObject").GetComponent<ObjectSize>().targetObject = hitObject;
+    }
+
+    void objectClickNo()
+    {
+        GameObject.Find("GameObject").GetComponent<lookScript>().avatar = null;
+        GameObject.Find("GameObject").GetComponent<ObjectMove>().targetObject = null;
+        GameObject.Find("GameObject").GetComponent<ObjectRotation>().targetObject = null;
+        GameObject.Find("GameObject").GetComponent<ObjectSize>().targetObject = null;
+
+        GameObject.Find("GameObject").GetComponent<ObjectMove>().isButtonClick = false;
+        GameObject.Find("GameObject").GetComponent<ObjectSize>().sizeUiInActive();
+        GameObject.Find("GameObject").GetComponent<ObjectRotation>().rotUiInActive();
+    }
+
+
 }

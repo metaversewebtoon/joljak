@@ -81,7 +81,14 @@ public class ObjectSize : MonoBehaviour
 
     public void sizeUiActive()
     {
-        size_ui.SetActive(true);
+        GameObject.Find("GameObject").GetComponent<ObjectMove>().isButtonClick = false;
+        GameObject.Find("GameObject").GetComponent<ObjectRotation>().rotUiInActive();
+
+        if (targetObject != null)
+        {
+            size_ui.SetActive(true);
+        }
+            
     }
 
     public void sizeUiInActive()

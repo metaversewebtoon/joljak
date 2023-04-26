@@ -5,6 +5,12 @@ using UnityEngine;
 public class objectClickScript : MonoBehaviour
 {
 
+    void Update()
+    {
+
+    }
+
+
     void OnMouseDrag()
     {
 
@@ -12,12 +18,13 @@ public class objectClickScript : MonoBehaviour
 
     void OnMouseDown()
     {
-        if (gameObject.CompareTag("avatar"))
-        {
-            GameObject.Find("GameObject").GetComponent<lookScript>().avatar = gameObject;
-        }
-        GameObject.Find("GameObject").GetComponent<ObjectSize>().targetObject = gameObject;
-        GameObject.Find("GameObject").GetComponent<ObjectMove>().targetObject = gameObject;
+        //if (gameObject.CompareTag("avatar"))
+        //{
+        //    GameObject.Find("GameObject").GetComponent<lookScript>().avatar = gameObject;
+        //}
+        //GameObject.Find("GameObject").GetComponent<ObjectMove>().targetObject = gameObject;
+        //GameObject.Find("GameObject").GetComponent<ObjectRotation>().targetObject = gameObject;
+        //GameObject.Find("GameObject").GetComponent<ObjectSize>().targetObject = gameObject;
 
     }
     
