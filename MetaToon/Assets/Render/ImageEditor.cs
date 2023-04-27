@@ -6,7 +6,7 @@ using UnityEngine.Networking;
 
 public class ImageEditor : MonoBehaviour
 {
-    private string dirName = "Assets/Render/Screenshots";
+    private string dirName = "Assets/Resources/Screenshots";
     private string fileName = "TestImage.png";
     private string server = "34.145.65.5:46351";
     private byte[] pngArray; // Byte array of the Image
