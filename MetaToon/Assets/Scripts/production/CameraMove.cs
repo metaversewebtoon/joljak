@@ -28,6 +28,8 @@ public class CameraMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        MouseScrollEvent();
         if (_targetObject)
         {
             _lookVec = Vector3.Normalize(_targetObject.position - this.transform.position);
@@ -87,7 +89,7 @@ public class CameraMove : MonoBehaviour
             _isDrag = false;
 		}
 
-        MouseScrollEvent();
+        
 
     }
 
@@ -105,6 +107,7 @@ public class CameraMove : MonoBehaviour
         Vector2 scrollDelta = Input.mouseScrollDelta;
         Vector3 targetPos = this.transform.position + _lookVec * scrollDelta.y * Time.deltaTime * _zoomSpeed;
         this.transform.position = targetPos;
+        Debug.Log("¡‹");
     }
     
 }
