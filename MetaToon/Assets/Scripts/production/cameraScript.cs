@@ -19,7 +19,7 @@ public class cameraScript : MonoBehaviour
 
 	private Vector3 _lookVec;
 	private float _distance = 10.0f;
-
+	private Vector3 _prePosition;
 	private bool _isDrag = false;
 
 	private void Start()
@@ -29,6 +29,12 @@ public class cameraScript : MonoBehaviour
 
 	void Update()
 	{
+		if(hitObject)
+		{
+			_lookVec = Vector3.Normalize(hitObject.transform.position+Vector3.up - this.transform.position);
+		}
+
+		if (Input.GetKeyDown(KeyCode.LeftAlt) && hitObject) hitObject = null;
 		if (Input.GetKeyDown(KeyCode.LeftAlt)) isAlt = true;
 		if (Input.GetKeyUp(KeyCode.LeftAlt)) isAlt = false;
 		if (Input.GetMouseButtonDown(0)) clickPoint = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
@@ -38,6 +44,7 @@ public class cameraScript : MonoBehaviour
 		{
 			// 스크롤 비활성화
 			GameObject.Find("GameObject").GetComponent<scrollScript>().ScrollInactive();
+			_prePosition = Camera.main.ScreenToViewportPoint(Input.mousePosition);
 			_isDrag = true;
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition); // 현재 마우스 위치에서 Ray 생성
 
@@ -47,8 +54,7 @@ public class cameraScript : MonoBehaviour
 			{
 				hitObject = hit.collider.gameObject;
 
-				_lookVec = Vector3.Normalize(hitObject.transform.position - this.transform.position);
-				_distance = Vector3.Distance(hitObject.transform.position, this.transform.position);
+				_distance = Vector3.Distance(hitObject.transform.position + Vector3.up, this.transform.position);
 
 				Debug.Log("인식된 물체: " + hitObject.name);
 				if (hitObject.layer != LayerMask.NameToLayer("UI"))
@@ -61,44 +67,68 @@ public class cameraScript : MonoBehaviour
 		}
 		if (Input.GetMouseButton(0))
 		{
-			objectClickNo();
-			// Alt키 누른 경우 카메라 이동
-			if (isAlt)
+			if (_isDrag)
 			{
-				Vector3 position = Camera.main.ScreenToViewportPoint((Vector2)Input.mousePosition - clickPoint);
+				if (!hitObject)
+				{
+					objectClickNo();
+					// Alt키 누른 경우 카메라 이동
+					if (isAlt)
+					{
+						Vector3 position = Camera.main.ScreenToViewportPoint((Vector2)Input.mousePosition - clickPoint);
 
-				position.z = position.y;
-				position.y = .0f;
+						position.z = position.y;
+						position.y = .0f;
 
-				Vector3 move = position * (Time.deltaTime * dragSpeed);
+						Vector3 move = position * (Time.deltaTime * dragSpeed);
 
-				transform.Translate(move);
+						transform.Translate(move);
+					}
+					// Alt키 누르지 않은 경우 카메라 회전
+					else
+					{
+						xRotateMove = -Input.GetAxis("Mouse Y") * Time.deltaTime * rotateSpeed*1.5f;
+						yRotateMove = Input.GetAxis("Mouse X") * Time.deltaTime * rotateSpeed*1.5f;
+
+						yRotate = transform.eulerAngles.y + yRotateMove;
+
+						xRotate = xRotate + xRotateMove;
+
+						xRotate = Mathf.Clamp(xRotate, -90, 90); // 위, 아래 고정
+
+						transform.eulerAngles = new Vector3(xRotate, yRotate, 0);
+					}
+				}
+				else
+				{
+
+					Vector3 currentPosition = Camera.main.ScreenToViewportPoint(Input.mousePosition);
+					Vector3 direction = _prePosition - currentPosition;
+					Debug.Log(direction);
+					float rotationAroundYAxis = -direction.x * 180;
+					float rotationAroundXAxis = direction.y * 180;
+					this.transform.position = hitObject.transform.position+ Vector3.up;
+
+					this.transform.Rotate(new Vector3(1, 0, 0), rotationAroundXAxis);
+					this.transform.Rotate(new Vector3(0, 1, 0), rotationAroundYAxis, Space.World);
+					this.transform.Translate(new Vector3(0, 0, -_distance));
+
+					_prePosition = currentPosition;
+				}
 			}
-			// Alt키 누르지 않은 경우 카메라 회전
-			else
-			{
-				xRotateMove = -Input.GetAxis("Mouse Y") * Time.deltaTime * rotateSpeed;
-				yRotateMove = Input.GetAxis("Mouse X") * Time.deltaTime * rotateSpeed;
+		}
+		if (Input.GetMouseButtonUp(0))
+			_isDrag = false;
 
-				yRotate = transform.eulerAngles.y + yRotateMove;
-
-				xRotate = xRotate + xRotateMove;
-
-				xRotate = Mathf.Clamp(xRotate, -90, 90); // 위, 아래 고정
-
-				transform.eulerAngles = new Vector3(xRotate, yRotate, 0);
-			}
-			// 줌인 줌아웃
-			if (hitObject)
-			{
-				MouseScrollEvent();
-			}
-			else
-			{
-				float scroollWheel = Input.GetAxis("Mouse ScrollWheel");
-				Vector3 targetPos = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z + scroollWheel * Time.deltaTime * scrollSpeed);
-				this.transform.position = Vector3.Lerp(this.transform.position, targetPos, Time.deltaTime * 1);
-			}
+		if (hitObject)
+		{
+			MouseScrollEvent();
+		}
+		else
+		{
+			float scroollWheel = Input.GetAxis("Mouse ScrollWheel");
+			Vector3 targetPos = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z + scroollWheel * Time.deltaTime * scrollSpeed*100);
+			this.transform.position = Vector3.Lerp(this.transform.position, targetPos, Time.deltaTime * 1);
 		}
 	}
 
@@ -128,6 +158,7 @@ public class cameraScript : MonoBehaviour
 	private void MouseScrollEvent()
 	{
 		Vector2 scrollDelta = Input.mouseScrollDelta;
+		
 		Vector3 targetPos = this.transform.position + _lookVec * scrollDelta.y * Time.deltaTime * scrollSpeed;
 		this.transform.position = targetPos;
 	}
