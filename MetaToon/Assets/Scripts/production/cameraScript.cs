@@ -50,7 +50,7 @@ public class cameraScript : MonoBehaviour
 
 			RaycastHit hit;
 			// Ray가 충돌한 물체를 인식한 경우 오브젝트 조정
-			if (Physics.Raycast(ray, out hit))
+			if (Physics.Raycast(ray, out hit) && hit.transform.name.Contains("avatar") || hit.transform.name.Contains("element"))
 			{
 				hitObject = hit.collider.gameObject;
 
