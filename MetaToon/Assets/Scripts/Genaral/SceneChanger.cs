@@ -55,4 +55,11 @@ public class SceneChanger : MonoBehaviour
         // ¾À º¯È¯
         SceneManager.LoadScene(sceneName);
     }
+
+    public void ViewWebtoon()
+	{
+        string path = "file:///C:\\E\\Projects\\UnityProjects\\MetaToonRoot\\js_test\\html\\webtoon_test.html";
+        Application.OpenURL(path);
+
+    }
 }
