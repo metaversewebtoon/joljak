@@ -23,9 +23,12 @@ public class prefabScript : MonoBehaviour
 
         GameObject obj = Instantiate(Resources.Load<GameObject>(prefabName));
 
-        obj.AddComponent<SA.FullBodyIKBehaviour>();
-        obj.AddComponent<AttachControlTarget>();
+        Debug.Log("∫≠∆∞ ¿Ã∏ß" + buttonName);
+        if (buttonName.Contains("avatar"))
+        {
+            obj.AddComponent<SA.FullBodyIKBehaviour>();
+            obj.AddComponent<AttachControlTarget>();
 
-
+        }
     }
 }
