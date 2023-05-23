@@ -1,0 +1,23 @@
+# docker-compose.yml
+
+version: '3.5'
+services:
+  backend:
+    build:
+      context: ./backend
+    restart: always
+    volumes:
+      - ./db/storage:/app/storage
+    ports: 
+      - 46351:3000
+    links:
+      - "db"
+  db:
+    build:
+      context: ./db
+    restart: always
+    volumes:
+      - ./db/init:/docker-entrypoint-initdb.d
+      - ./db/data:/var/lib/mysql
+    ports:
+      - 46352:3306
