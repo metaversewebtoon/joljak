@@ -9,6 +9,7 @@ public class ImageEditor : MonoBehaviour
     private string dirName = "Assets/Resources/Screenshots";
     private string fileName = "TestImage.png";
     private string server = "34.145.65.5:46351";
+    //private string server = "192.168.61.52:46351";
     private byte[] pngArray; // Byte array of the Image
 
     public Button btn_CaptureScreen; // Button for Capturing screen
@@ -73,13 +74,18 @@ public class ImageEditor : MonoBehaviour
         // Create a form to send the byte array to the server
         WWWForm form = new WWWForm();
 
+        string token = LoginScene.token;
+        Debug.Log("token = "+token);
+
         form.AddBinaryData("file", imageData, "Test.png", "image/png");
+        form.AddField("fileTitle", "testFile");
 
         // Create a UnityWebRequest to send the form to the server
         using (UnityWebRequest requestPost = UnityWebRequest.Post("http://" + server + "/file/upload", form))
         {
+            requestPost.SetRequestHeader("token", token);
             yield return requestPost.SendWebRequest();
-
+            
             // Check for errors
             if (requestPost.result != UnityWebRequest.Result.Success)
             {

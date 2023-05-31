@@ -6,6 +6,13 @@ using TMPro;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 
+[System.Serializable]
+public class MyResponseData
+{
+    public string result;
+    public string token;
+}
+
 public class LoginScene : MonoBehaviour
 {
     public TMP_InputField idField;
@@ -15,6 +22,8 @@ public class LoginScene : MonoBehaviour
     public Button registerBtn;
 
     public TMP_Text errorText;
+
+    public static string token;
 
     public void Start()
     {
@@ -31,7 +40,7 @@ public class LoginScene : MonoBehaviour
         WWWForm form = new WWWForm();
         form.AddField("email", idField.text);
         form.AddField("password", passwordField.text);
-        using (UnityWebRequest requestPost = UnityWebRequest.Post("http://34.145.65.5:46351/api/user/login", form))
+        using (UnityWebRequest requestPost = UnityWebRequest.Post("http://34.145.65.5:46351/api/user/login", form))/*"http://34.145.65.5:46351/api/user/login"*/
         {
             yield return requestPost.SendWebRequest();
 
@@ -46,6 +55,16 @@ public class LoginScene : MonoBehaviour
             if (requestPost.responseCode == 200)
             {
                 Debug.Log("User logged in successfully");
+
+                // Get the response data as JSON
+                string jsonResponse = requestPost.downloadHandler.text;
+
+                // Parse the JSON data
+                MyResponseData responseData = JsonUtility.FromJson<MyResponseData>(jsonResponse);
+
+                token = responseData.token;
+                Debug.Log("token = " + token);
+
                 SceneManager.LoadScene("main");
             }
             else

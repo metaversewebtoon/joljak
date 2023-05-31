@@ -1,4 +1,11 @@
-fetch("http://34.145.65.5:46351/file/11", {
+// Get the HTML file name
+var htmlFileName = window.location.pathname.split("/").pop();
+
+// Remove the file extension if present
+var variableName = htmlFileName.replace(".html", "");
+var index = variableName.replace("2-", "");
+
+fetch("http://34.145.65.5:46351/file/" + index, {
   headers: {
     Accept: "image/png",
   },

@@ -6,6 +6,8 @@ public class WebAvatarLoader : MonoBehaviour
     private const string TAG = nameof(WebAvatarLoader);
     private GameObject avatar;
     private string avatarUrl = "";
+    private string[] splitUrl;
+    public string[] avatarName;
 
     private void Start()
     {
@@ -16,13 +18,29 @@ public class WebAvatarLoader : MonoBehaviour
 #endif
     }
     
-    public void OnWebViewAvatarGenerated(string generatedUrl)
+    public void OnWebViewAvatarGeneratedAsync(string generatedUrl)
     {
         var avatarLoader = new AvatarLoader();
         avatarUrl = generatedUrl;
+        splitUrl = avatarUrl.Split('/');
+        avatarName = splitUrl[3].Split('.');
         avatarLoader.OnCompleted += OnAvatarLoadCompleted;
         avatarLoader.OnFailed += OnAvatarLoadFailed;
         avatarLoader.LoadAvatar(avatarUrl);
+        doAttachScript(avatarName[0]); // 아바타에 자세조정 스크립트 적용
+    }
+
+    public void doAttachScript(string name)
+    {
+        GameObject obj = GameObject.Find(name);
+        if (obj)
+        {
+            obj.AddComponent<SA.FullBodyIKBehaviour>();
+        }
+        else
+        {
+            Debug.Log(name + " 아바타를 찾을 수 없음");
+        }
     }
 
     private void OnAvatarLoadCompleted(object sender, CompletionEventArgs args)

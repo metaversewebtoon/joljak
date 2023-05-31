@@ -1,10 +1,5 @@
-/*
-html에 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.6.0/jszip.min.js"></script>
-반드시 추가!!
-*/
-
 let count = 0;
+const container = document.getElementById("container");
 
 fetch("http://34.145.65.5:46351/file_archive")
   .then(function (response) {
@@ -19,27 +14,30 @@ fetch("http://34.145.65.5:46351/file_archive")
     zip.forEach(function (relativePath, zipEntry) {
       if (!zipEntry.dir && zipEntry.name.endsWith(".png")) {
         var promise = zipEntry.async("blob").then(function (content) {
+          // Create a container for each image and title
+          var imageContainer = document.createElement("a");
+          imageContainer.href = "webtoon_test.html";
+          imageContainer.className = "image-container";
+
           // Create an image element
           var img = document.createElement("img");
           img.src = URL.createObjectURL(content);
+          img.alt = "Image " + (count + 1);
 
           // Extract title from image name
           var imageName = zipEntry.name;
           var title = imageName.substring(0, imageName.lastIndexOf("."));
 
-          // Create a container for the image and title
-          var container = document.createElement("div");
-
-          // Create a paragraph element for the title
-          var titleElement = document.createElement("p");
+          // Create an h2 element for the title
+          var titleElement = document.createElement("h2");
           titleElement.textContent = title;
 
           // Append image and title to the container
-          container.appendChild(img);
-          container.appendChild(titleElement);
+          imageContainer.appendChild(img);
+          imageContainer.appendChild(titleElement);
 
-          // Append container to the body or any other container
-          document.body.appendChild(container);
+          // Append container to the main container
+          container.appendChild(imageContainer);
 
           count = count + 1;
         });

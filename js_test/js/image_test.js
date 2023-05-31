@@ -1,8 +1,4 @@
-fetch("http://34.145.65.5:46351/file/2", {
-  headers: {
-    Accept: "image/png",
-  },
-})
+fetch("http://34.145.65.5:46351/file/1", {})
   .then((response) => {
     if (response.ok) {
       return response.blob(); // if response is ok, get blob data

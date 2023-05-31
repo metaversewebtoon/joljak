@@ -32,7 +32,7 @@ public class Register : MonoBehaviour
         form.AddField("email", idField.text);
         form.AddField("password", passwordField.text);
         form.AddField("name", nameField.text);
-        using(UnityWebRequest requestPost = UnityWebRequest.Post("http://34.145.65.5:46351/api/user/register", form))
+        using(UnityWebRequest requestPost = UnityWebRequest.Post("http://34.145.65.5:46351/api/user/register", form))/*"http://34.145.65.5:46351/api/user/register"*/
         {
             yield return requestPost.SendWebRequest();
 
