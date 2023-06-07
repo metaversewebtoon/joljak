@@ -2,7 +2,8 @@ let count = 0;
 let webtoonIndex = 1;
 let pageCheck = 0;
 const container = document.getElementById("container");
-container.style = "list-style: none";
+container.style = "list-style: none; display: none;";
+const loading = document.getElementById("loading");
 
 fetch("http://34.145.65.5:46351/file_archive")
   .then(function (response) {
@@ -121,6 +122,12 @@ fetch("http://34.145.65.5:46351/file_archive")
     });
 
     console.log("웹툰의 개수 = " + count);
+
+    // Hide loading.gif after loaded webtoon successfully
+    if (count > 0) {
+      loading.style.display = "none";
+      container.style = "list-style: none";
+    }
 
     function openContentPage(index) {
       var newWindow = window.open("", "_blank");
