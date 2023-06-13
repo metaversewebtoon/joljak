@@ -3,6 +3,7 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
+using System.Runtime.InteropServices;
 
 public class ImageEditor : MonoBehaviour
 {
@@ -15,11 +16,24 @@ public class ImageEditor : MonoBehaviour
     public Button btn_CaptureScreen; // Button for Capturing screen
     public GameObject UserInterface; // Set UI(e.g. Canvas) from inspector menu
 
+    public string token;
+
+
+    // 웹 브라우저에서 localStorage의 'token' 키에 저장된 값을 가져옵니다.
+    [DllImport("__Internal")]
+    private static extern string GetLocalStorageValue(string key);
+
+
     // Start is called before the first frame update
     void Start()
     {
         btn_CaptureScreen.onClick.AddListener(CaptureScreen);
+        
+        token = GetLocalStorageValue("token");
+        Debug.Log("Token: " + token);
     }
+
+
 
     // Update is called once per frame
     void Update()
@@ -69,13 +83,16 @@ public class ImageEditor : MonoBehaviour
         }
     }
 
+    
+
     public IEnumerator SendString(byte[] imageData)
     {
         // Create a form to send the byte array to the server
         WWWForm form = new WWWForm();
 
-        string token = LoginScene.token;
-        Debug.Log("token = "+token);
+        //String token = LoginScene.token;
+        //Debug.Log("token = "+token);
+
 
         form.AddBinaryData("file", imageData, "Test.png", "image/png");
         form.AddField("fileTitle", "testFile");
@@ -83,7 +100,7 @@ public class ImageEditor : MonoBehaviour
         // Create a UnityWebRequest to send the form to the server
         using (UnityWebRequest requestPost = UnityWebRequest.Post("http://" + server + "/file/upload", form))
         {
-            requestPost.SetRequestHeader("token", token);
+            //requestPost.SetRequestHeader("token", token);
             yield return requestPost.SendWebRequest();
             
             // Check for errors
