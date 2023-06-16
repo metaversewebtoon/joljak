@@ -473,7 +473,6 @@ MonoBehaviour:
   submitBtn: {fileID: 257601118}
   registerBtn: {fileID: 2067234438}
   errorText: {fileID: 593048734}
-  main: main
 --- !u!1 &257601116
 GameObject:
   m_ObjectHideFlags: 0
