@@ -5,7 +5,7 @@ const container = document.getElementById("container");
 container.style = "list-style: none; display: none;";
 const loading = document.getElementById("loading");
 
-fetch("http://34.145.65.5:46351/file_archive")
+fetch("http://34.145.65.5:46351/toon_archive")
   .then(function (response) {
     return response.blob();
   })
