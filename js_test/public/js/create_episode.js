@@ -58,7 +58,7 @@ fetch("http://34.145.65.5:46351/toon_archive")
           var htmlContent = `
           <!DOCTYPE html>
           <html lang="en">
-            <link rel="stylesheet" href="../../css/webtoon_test.css" />
+            <link rel="stylesheet" href="/css/webtoon_test.css" />
             <head>
               <meta charset="UTF-8" />
               <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -75,7 +75,7 @@ fetch("http://34.145.65.5:46351/toon_archive")
                     <li>
                       <a href="#" id="return-link">회차 목록으로 돌아가기</a>
                     </li>
-                    <li><a href="../webtoon_test.html">홈</a></li>
+                    <li><a href="/">홈</a></li>
                   </ul>
                 </nav>
               </header>

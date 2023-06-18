@@ -58,7 +58,7 @@ app.get('/webtoon1', (req, res) => {
   res.sendFile(path.join(__dirname, 'html/manhwa/sample_webtoon1.html'));
 });
 app.get('/webtoon2', (req, res) => {
-  res.sendFile(path.join(__dirname, 'html/manhwa/sample_webtoon1.htm2'));
+  res.sendFile(path.join(__dirname, 'html/manhwa/sample_webtoon2.html'));
 });
 
 app.listen(port, () => {
