@@ -38,7 +38,9 @@ fetch("http://34.145.65.5:46351/toon_archive")
 
           // Extract title from image name
           var imageName = zipEntry.name;
-          var title = imageName.substring(0, imageName.lastIndexOf("."));
+          var startIndex = imageName.indexOf("_") + 1; // Find the index of the underscore and add 1 to exclude it
+          var endIndex = imageName.lastIndexOf(".");
+          var title = imageName.substring(startIndex, endIndex);
           console.log(title);
 
           // Create an h3 element for the title
