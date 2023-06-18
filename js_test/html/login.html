@@ -8,33 +8,28 @@
   </head>
   <body>
     <header>
-      <link rel="stylesheet" href="../css/webtoon_test.css" />
-      <h1>웹툰 뷰어 플랫폼</h1>
+      <link rel="stylesheet" href="/css/webtoon_test.css" />
+      <h1>로그인</h1>
       <nav>
         <ul>
-          <li><a href="webtoon_test.html">홈</a></li>
+          <li><a href="/">홈</a></li>
         </ul>
       </nav>
     </header>
     <main>
-      <link rel="stylesheet" href="../css/login&register.css" />
+      <link rel="stylesheet" href="/css/login&register.css" />
       <div class="login-wrapper">
-        <h2>Login</h2>
+        <h2>Sign in</h2>
         <form
           method="POST"
           action="http://34.145.65.5:46351/api/user/login"
           id="login-form"
         >
           <input type="text" name="email" placeholder="Email" required />
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            required
-          />
-          <input type="submit" value="Login" />
-          <script src="../js/login.js"></script>
-          <p><a href="register.html">회원가입</a></p>
+          <input type="password" name="password" placeholder="Password" required />
+          <input type="submit" value="SIGN IN" />
+          <script src="/js/login.js"></script>
+          <p><a href="/register">회원가입</a></p>
         </form>
       </div>
     </main>
