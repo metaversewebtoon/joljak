@@ -16,20 +16,26 @@ public class ObjectMove : MonoBehaviour
             float vertical = 0.0f;
             float depth = 0.0f;
 
-            // 방향키 입력 감지
-            if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow))
+            // X 축 이동
+            if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
             {
                 horizontal = Input.GetAxis("Horizontal");
             }
-            if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow))
+            // Z축 이동
+            if (Input.GetKey(KeyCode.Q))
             {
-                vertical = Input.GetAxis("Vertical");
+                vertical = 1.0f; 
             }
-            if (Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.UpArrow))
+            else if (Input.GetKey(KeyCode.Z))
+            {
+                vertical = -1.0f; 
+            }
+            // Y축 이동
+            if (Input.GetKey(KeyCode.W))
             {
                 depth = 1.0f;
             }
-            else if (Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.DownArrow))
+            else if (Input.GetKey(KeyCode.S))
             {
                 depth = -1.0f;
             }

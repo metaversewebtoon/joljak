@@ -141,6 +141,7 @@ public class cameraScript : MonoBehaviour
 		GameObject.Find("GameObject").GetComponent<ObjectMove>().targetObject = hitObject;
 		GameObject.Find("GameObject").GetComponent<ObjectRotation>().targetObject = hitObject;
 		GameObject.Find("GameObject").GetComponent<ObjectSize>().targetObject = hitObject;
+		GameObject.Find("GameObject").GetComponent<ObjectDelete>().targetObject = hitObject;
 	}
 
 	void objectClickNo()
@@ -149,6 +150,7 @@ public class cameraScript : MonoBehaviour
 		GameObject.Find("GameObject").GetComponent<ObjectMove>().targetObject = null;
 		GameObject.Find("GameObject").GetComponent<ObjectRotation>().targetObject = null;
 		GameObject.Find("GameObject").GetComponent<ObjectSize>().targetObject = null;
+		GameObject.Find("GameObject").GetComponent<ObjectDelete>().targetObject = null;
 
 		GameObject.Find("GameObject").GetComponent<ObjectMove>().isButtonClick = false;
 		GameObject.Find("GameObject").GetComponent<ObjectSize>().sizeUiInActive();
