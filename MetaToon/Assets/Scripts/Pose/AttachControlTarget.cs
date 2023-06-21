@@ -15,7 +15,7 @@ public class AttachControlTarget : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _poseTable = Resources.Load<PoseTable>($"Tables/Pose/PoseTable");
+        _poseTable = Resources.Load<PoseTable>($"Tables/PoseTable");
         _fullbodyik = this.gameObject.GetComponent<FullBodyIKBehaviour>().fullBodyIK;
         _controlObject = new ControlObject();
         _controlObject.SetControlObjectsTransform(_fullbodyik, _poseTable.controlPrefab, this.transform);

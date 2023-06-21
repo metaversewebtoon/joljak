@@ -3,14 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Cut : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class Cut : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerClickHandler
 {
 
 	RectTransform rectTransform;
 	CanvasGroup canvasGroup;
-	[SerializeField] Canvas canvas;
 
-
+    public Vector2 pos
+	{
+		get
+		{
+            return transform.localPosition;
+		}
+		set
+		{
+            transform.localPosition = value;
+		}
+	}
 
 	// Start is called before the first frame update
 	void Start()
@@ -33,6 +42,8 @@ public class Cut : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandl
         canvasGroup.blocksRaycasts = false;
     }
 
+
+
     public void OnDrag(PointerEventData eventData)
     {
         // 이전 이동과 비교해서 얼마나 이동했는지를 보여줌
@@ -45,6 +56,15 @@ public class Cut : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandl
         canvasGroup.alpha = 1f;
         canvasGroup.blocksRaycasts = true;
     }
-    // Update is called once per frame
-    
+
+	public void OnPointerClick(PointerEventData eventData)
+	{
+        this.gameObject.SetActive(false);
+        Debug.Log(transform.localPosition);
+	}
+
+
+
+	// Update is called once per frame
+
 }

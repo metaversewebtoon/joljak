@@ -8,6 +8,8 @@ public class SceneListView : MonoBehaviour
     private uint imageCount;
     private StoryBoardTable table;
     // Start is called before the first frame update
+
+    public IEnumerable<SceneImage> sceneImages => sceneImageSet.Values;
     void Start()
     {
         table = Resources.Load<StoryBoardTable>("Tables/StoryBoardTable");
@@ -18,6 +20,7 @@ public class SceneListView : MonoBehaviour
         foreach(var sprite in spriteList)
 		{
             var sceneImage = SceneImageFactory.CreateSceneImage(this.transform, imageCount, sprite, table);
+            sceneImage.Init(imageCount);
             sceneImageSet[imageCount]=sceneImage;
             imageCount++;
 		}

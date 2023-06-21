@@ -18,7 +18,8 @@ public class CaptureScene : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _captureTable = Resources.Load<CaptureTable>($"Tables/Capture/CaptureTable");
+        _sequence = 0;
+        _captureTable = Resources.Load<CaptureTable>($"Tables/CaptureTable");
         _captureButton.onClick.AddListener(SaveCameraView);
         _cam = GetComponent<Camera>();
     }
@@ -35,7 +36,7 @@ public class CaptureScene : MonoBehaviour
         renderedTexture.ReadPixels(new Rect(0, 0, Screen.width, Screen.height), 0, 0);
         RenderTexture.active = null;
         byte[] byteArray = renderedTexture.EncodeToPNG();
-        SendString(byteArray);
+        StartCoroutine(SendString(byteArray));
         System.IO.File.WriteAllBytes(Application.dataPath + "/cameracapture.png", byteArray);
         Toggle();
     }
@@ -47,9 +48,9 @@ public class CaptureScene : MonoBehaviour
         WWWForm form = new WWWForm();
 
         form.AddBinaryData("file", imageData, "Test.png", "image/png");
-
+        form.AddField("fileTitle", "scenetest"+_sequence.ToString());
         // Create a UnityWebRequest to send the form to the server
-        using (UnityWebRequest requestPost = UnityWebRequest.Post("http://" + _captureTable.serverIP + "/file/upload", form))
+        using (UnityWebRequest requestPost = UnityWebRequest.Post("http://" + _captureTable.serverIP + "/file/upload/", form))
         {
             yield return requestPost.SendWebRequest();
 

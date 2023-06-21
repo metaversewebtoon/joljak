@@ -13,12 +13,29 @@ public class CutView : MonoBehaviour
 
     private Cut targetCut; // 리스너로 타겟지정
 
+    public Dictionary<uint, Cut> cutDict => cutSet;
     public IEnumerable<Cut> cuts => cutSet.Values;
     public IEnumerable<Image> cutImages => cuts.Select( x => x.GetComponent<Image>() );
 
 	//public IEnumerable<Cut> cutList => cutDic.SelectMany(x => x.Value);
-	public float bottomYPos { get { return cutSet.Values.Select(x => x.transform.position.y).Min(); } }
-	public float topYPos { get { return cutSet.Values.Select(x => x.transform.position.y).Max(); } }
+	public float bottomYPos { 
+        get {
+            var count = cuts.Where(x => x.gameObject.activeSelf == true).Count();
+            if (count ==  0)
+                return -100.0f;
+            else
+                return cuts.Where(x=>x.gameObject.activeSelf == true).Select(x => x.transform.localPosition.y).Min() - 500.0f; 
+        } 
+    }
+	public float topYPos { 
+        get 
+        {
+            if (cutSet.Count == 0)
+                return -100.0f;
+            else
+                return cuts.Where(x => x.gameObject.activeSelf == true).Select(x => x.transform.localPosition.y).Max(); 
+        }
+    }
 
 	void Start()
     {
@@ -30,7 +47,8 @@ public class CutView : MonoBehaviour
         foreach (var sprite in spriteList)
         {
             var cut = CutFactory.CreateCut(this.transform, imageCount, sprite, table);
-            cutSet[imageCount]=cut;
+            cut.gameObject.SetActive(false);
+            cutSet.Add(imageCount, cut);
             imageCount++;
         }
     }
@@ -41,15 +59,7 @@ public class CutView : MonoBehaviour
         
     }
 
-    public void DisableCut()
-	{
-        targetCut.gameObject.SetActive(false);
-	}
-
-    public void EnableCut()
-	{
-        targetCut.gameObject.SetActive(true);
-	}
+    
 
    
 }

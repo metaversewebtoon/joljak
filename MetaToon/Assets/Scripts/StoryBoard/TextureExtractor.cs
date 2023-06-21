@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public static class TextureExtractor 
 {
-    public static Texture2D GetTexture(Vector2 range, List<Image> cutImageList, Color backgroundColor)
+    public static Texture2D GetTexture(Vector2 range, List<Image> cutImageList, Color backgroundColor, uint padding)
 	{
 		var texture = new Texture2D((int)range.x, (int)range.y);
 		FillColor(texture, backgroundColor);
@@ -23,6 +23,8 @@ public static class TextureExtractor
 		var startX = image.rectTransform.position.x - image.rectTransform.rect.width / 2;
 		var startY = image.rectTransform.position.y + image.rectTransform.rect.height / 2;
 
+
+		// »óÇÏÁÂ¿ì ¾Æ·¡ : ¿ø·¡ÁÂÇ¥ - ³ôÀÌ±îÁö   ÁÂ¿ì : ¿ø·¡ÁÂÇ¥ +- ³ÐÀÌ¹Ý
 		for(int x = (int)startX; x < image.rectTransform.rect.width; x++)
 		{
 			for (int y = (int)startY; y > startY - image.rectTransform.rect.height; y--)
@@ -30,6 +32,7 @@ public static class TextureExtractor
 				background.SetPixel(x, y, image.sprite.texture.GetPixel(x, y));
 			}
 		}
+		
 	}
 
 	private static void FillColor(Texture2D texture, Color color)
