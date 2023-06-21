@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2525315057595120399}
   - component: {fileID: 702298395097274910}
   - component: {fileID: 8853554525002037134}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Mercedes Benz GLS 580
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,7 +109,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5780523018376583146}
   - component: {fileID: 4319474317493463252}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: element_2_prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}

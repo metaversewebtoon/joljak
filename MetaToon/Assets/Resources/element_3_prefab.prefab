@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6753268968595812739}
   - component: {fileID: 6519244367996570496}
   - component: {fileID: 849833114878310253}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2188155196390240860}
   - component: {fileID: 5759482660464583338}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: element_3_prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,7 +109,7 @@ Transform:
   m_GameObject: {fileID: 1519458146764171494}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 10, y: 10, z: 10}
+  m_LocalScale: {x: 20, y: 20, z: 20}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8801175287163063806}
@@ -144,7 +144,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8801175287163063806}
   - component: {fileID: 9196105256939811101}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -220,7 +220,7 @@ GameObject:
   - component: {fileID: 8434872180434715457}
   - component: {fileID: 566014806022329872}
   - component: {fileID: 5326540412665447280}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pole
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -303,7 +303,7 @@ GameObject:
   - component: {fileID: 1164417307355643797}
   - component: {fileID: 7424557295433059695}
   - component: {fileID: 1227561262533208194}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LightPart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -385,7 +385,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7679057068141737591}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: StreetLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -421,7 +421,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8496225705719997947}
   - component: {fileID: 5433586709760862624}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -515,7 +515,7 @@ GameObject:
   m_Component:
   - component: {fileID: 409280481939307955}
   - component: {fileID: 3054955961390401937}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Lamp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -610,7 +610,7 @@ GameObject:
   - component: {fileID: 3775557833459672464}
   - component: {fileID: 2503322645420896256}
   - component: {fileID: 5371450045717608801}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Torus_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -693,7 +693,7 @@ GameObject:
   - component: {fileID: 7934326436859544401}
   - component: {fileID: 8235677361880196306}
   - component: {fileID: 5655349588482142413}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -775,7 +775,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8666630661979179376}
   - component: {fileID: 7633029148036572554}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SpotLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
