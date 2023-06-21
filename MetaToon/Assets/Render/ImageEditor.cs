@@ -54,6 +54,7 @@ public class ImageEditor : MonoBehaviour
         UserInterface.SetActive(true);
     }
 
+    /*
     void CaptureScreen()
     {
         UserInterface.SetActive(false);
@@ -63,6 +64,7 @@ public class ImageEditor : MonoBehaviour
             try
             {
                 // Capture and Save Screen
+                
                 DirectoryInfo screenshotDirectory = Directory.CreateDirectory(dirName);
                 string fullPath = Path.Combine(screenshotDirectory.FullName, fileName);
                 ScreenCapture.CaptureScreenshot(fullPath);
@@ -70,6 +72,16 @@ public class ImageEditor : MonoBehaviour
 
                 // Send Byte array of the image to DB
                 byte[] imageData = File.ReadAllBytes(fullPath);
+                
+
+                // Capture the current screen as a texture
+                Texture2D texture = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
+                texture.ReadPixels(new Rect(0, 0, Screen.width, Screen.height), 0, 0);
+
+
+                // Convert the texture to a byte array
+                byte[] imageData = texture.EncodeToPNG();
+
                 StartCoroutine(SendString(imageData));
             }
             catch (System.Exception e)
@@ -82,8 +94,50 @@ public class ImageEditor : MonoBehaviour
             }
         }
     }
+    */
 
-    
+    void CaptureScreen()
+    {
+        UserInterface.SetActive(false);
+        // If UI is hidden
+        if (!UserInterface.activeSelf)
+        {
+            StartCoroutine(CaptureScreenCoroutine());
+        }
+    }
+
+    IEnumerator CaptureScreenCoroutine()
+    {
+        yield return new WaitForEndOfFrame();
+
+        try
+        {
+            // Capture the current screen as a texture
+            Texture2D texture = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
+            texture.ReadPixels(new Rect(0, 0, Screen.width, Screen.height), 0, 0);
+            texture.Apply();
+
+            // Convert the texture to a byte array
+            byte[] imageData = texture.EncodeToPNG();
+
+            StartCoroutine(SendString(imageData));
+        }
+        catch (System.Exception e)
+        {
+            Debug.Log("Error : " + e.Message);
+        }
+        finally
+        {
+            StartCoroutine(WaitFrame());
+        }
+    }
+
+
+
+
+
+
+
 
     public IEnumerator SendString(byte[] imageData)
     {
@@ -100,7 +154,7 @@ public class ImageEditor : MonoBehaviour
         // Create a UnityWebRequest to send the form to the server
         using (UnityWebRequest requestPost = UnityWebRequest.Post("http://" + server + "/file/upload", form))
         {
-            //requestPost.SetRequestHeader("token", token);
+            requestPost.SetRequestHeader("token", token);
             yield return requestPost.SendWebRequest();
             
             // Check for errors
