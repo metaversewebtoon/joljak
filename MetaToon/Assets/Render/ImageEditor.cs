@@ -7,8 +7,8 @@ using System.Runtime.InteropServices;
 
 public class ImageEditor : MonoBehaviour
 {
-    private string dirName = "Assets/Resources/Screenshots";
-    private string fileName = "TestImage.png";
+    private string dirName = "Assets/Resources/StoryBoard/Screenshots";
+    private string fileName = "TestImage";
     private string server = "34.145.65.5:46351";
     //private string server = "192.168.61.52:46351";
     private byte[] pngArray; // Byte array of the Image
@@ -17,6 +17,7 @@ public class ImageEditor : MonoBehaviour
     public GameObject UserInterface; // Set UI(e.g. Canvas) from inspector menu
 
     public string token;
+    public uint seq;
 
 
     // 웹 브라우저에서 localStorage의 'token' 키에 저장된 값을 가져옵니다.
@@ -28,7 +29,7 @@ public class ImageEditor : MonoBehaviour
     void Start()
     {
         btn_CaptureScreen.onClick.AddListener(CaptureScreen);
-        
+        seq = 0;
         token = GetLocalStorageValue("token");
         Debug.Log("Token: " + token);
     }
@@ -119,7 +120,8 @@ public class ImageEditor : MonoBehaviour
 
             // Convert the texture to a byte array
             byte[] imageData = texture.EncodeToPNG();
-
+            File.WriteAllBytes(dirName+"/" + fileName + seq.ToString() + ".png", imageData);
+            seq++;
             StartCoroutine(SendString(imageData));
         }
         catch (System.Exception e)
