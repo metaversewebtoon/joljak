@@ -120,7 +120,7 @@ public class ImageEditor : MonoBehaviour
 
             // Convert the texture to a byte array
             byte[] imageData = texture.EncodeToPNG();
-            File.WriteAllBytes(dirName+"/" + fileName + seq.ToString() + ".png", imageData);
+            File.WriteAllBytes(Application.persistentDataPath+"/" + fileName + seq.ToString() + ".png", imageData);
             seq++;
             StartCoroutine(SendString(imageData));
         }
