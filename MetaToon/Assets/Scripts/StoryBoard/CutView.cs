@@ -24,7 +24,7 @@ public class CutView : MonoBehaviour
             if (count ==  0)
                 return -100.0f;
             else
-                return cuts.Where(x=>x.gameObject.activeSelf == true).Select(x => x.transform.localPosition.y).Min(); 
+                return cuts.Where(x=>x.gameObject.activeSelf == true).Select(x => x.transform.localPosition.y).Min() - 500.0f;  //나중에 컷 크기로 수정
         } 
     }
 	public float topYPos { 
