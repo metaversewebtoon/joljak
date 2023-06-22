@@ -14,7 +14,7 @@ public class SceneListView : MonoBehaviour
     public void Refresh()
 	{
         imageCount = 0;
-        var spriteList = ImageLoader.GetSpriteswithTextures(table.resourceDir);
+        var spriteList = ImageLoader.GetSpriteswithTextures(Application.persistentDataPath);
         // 리소스파일에서 텍스쳐 수만큼 팩토리에 생성요청
         foreach (var sprite in spriteList)
         {
@@ -27,7 +27,7 @@ public class SceneListView : MonoBehaviour
     void Start()
     {
         table = Resources.Load<StoryBoardTable>("Tables/StoryBoardTable");
-                
+        Refresh();
     }
 
     // Update is called once per frame

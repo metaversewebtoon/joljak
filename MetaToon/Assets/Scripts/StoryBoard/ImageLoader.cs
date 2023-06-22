@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,7 +19,15 @@ public static class ImageLoader
 
 	public static List<Sprite> GetSpriteswithTextures(string basepath)
 	{
-		var textures= Resources.LoadAll<Texture2D>(basepath);
+		var imagePaths = Directory.GetFiles(basepath, "*.png");
+		var textures = new List<Texture2D>();
+		foreach(var path in imagePaths)
+		{
+			var b = File.ReadAllBytes(path);
+			var texture = new Texture2D(2, 2);
+			texture.LoadImage(b);
+			textures.Add(texture);
+		}
 		List<Sprite> spritelist = new List<Sprite>();
 		foreach (var t in textures)
 		{
