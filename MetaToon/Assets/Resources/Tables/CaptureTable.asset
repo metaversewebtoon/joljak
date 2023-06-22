@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3255d1f57185fde4988a9c391aeb57c9, type: 3}
   m_Name: CaptureTable
   m_EditorClassIdentifier: 
-  dirName: Assets/Resources/Screenshots
+  dirName: StoryBoard/Screenshots
   fileName: 
   serverIP: 34.145.65.5:46351
