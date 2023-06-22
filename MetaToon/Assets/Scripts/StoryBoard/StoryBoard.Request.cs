@@ -19,11 +19,7 @@ public partial class StoryBoard
 	{
 		
 		var request =  UnityWebRequest.Get("http://" + table.serverIP + "/file_archive");
-		//StartCoroutine(test());
 		StartCoroutine(SendRequest(request));
-		//var data = request.downloadHandler.data;
-		//File.WriteAllBytes(table.zipPath, data);
-		//Unzip(table.zipPath, table.resourceDir);
 	}
 
 	public void UploadStoryBoard(byte[] imageData, string title)
@@ -50,25 +46,6 @@ public partial class StoryBoard
 		}
 	}
 
-	public IEnumerator test()
-	{
-		using (UnityWebRequest webrequest = UnityWebRequest.Get("http://" + table.serverIP + "/file_archive")) 
-		{
-			//requestPost.SetRequestHeader("token", token);
-			yield return webrequest.SendWebRequest();
-
-			// Check for errors
-			if (webrequest.result != UnityWebRequest.Result.Success)
-			{
-				Debug.Log(webrequest.error);
-			}
-			else
-			{
-				Debug.Log("Image sent successfully");
-			}
-		}
-	}
-
 	public IEnumerator SendRequest(UnityWebRequest request)
 	{
 		using (UnityWebRequest webrequest = request)
@@ -85,28 +62,10 @@ public partial class StoryBoard
 			{
 				Debug.Log("Image sent successfully");
 				var data = webrequest.downloadHandler.data;
-				File.WriteAllBytes(table.zipPath, data);
-				Unzip(table.zipPath, "Assets/Resources/"+ table.resourceDir);
+				var zippath = Application.persistentDataPath + "/" + table.zipPath;
+				File.WriteAllBytes(zippath, data);
+				Unzip(zippath, Application.persistentDataPath);
 				RefreshAll();
-			}
-		}
-	}
-
-	public IEnumerator SendRequest(string dir)
-	{
-		using (UnityWebRequest webrequest = UnityWebRequest.Get(dir))
-		{
-			//requestPost.SetRequestHeader("token", token);
-			yield return webrequest.SendWebRequest();
-
-			// Check for errors
-			if (webrequest.result != UnityWebRequest.Result.Success)
-			{
-				Debug.Log(webrequest.error);
-			}
-			else
-			{
-				Debug.Log("Image sent successfully");
 			}
 		}
 	}

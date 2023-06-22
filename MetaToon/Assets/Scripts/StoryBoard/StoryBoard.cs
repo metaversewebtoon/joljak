@@ -29,8 +29,7 @@ public partial class StoryBoard : MonoBehaviour
 		
 		title = 1;
 		table = Resources.Load<StoryBoardTable>("Tables/StoryBoardTable");
-		//LoadZipFile();
-		//RefreshAll();
+		LoadZipFile();
 		_boardSize = cutView.GetComponent<RectTransform>().rect.size;
 
 	}
