@@ -9,28 +9,30 @@ public partial class StoryBoard : MonoBehaviour
 {   //첨에는 자동으로 캡쳐이미지 순서로 생성해놓기
 	private int title;
 
-	private Vector2 boardSize;
-
 	[SerializeField]
 	private SceneListView sceneView;
 	[SerializeField]
 	private CutView cutView;
-
+	private Vector2 _boardSize = Vector2.zero;
 	private StoryBoardTable table;
 
-	
-
+	public Vector2 boardSize
+	{
+		get {
+			_boardSize.y = -(cutView.bottomYPos - 500.0f);
+			return _boardSize; 
+		}
+	}
 	// Start is called before the first frame update
 	void Start()
 	{
 		
 		title = 1;
 		table = Resources.Load<StoryBoardTable>("Tables/StoryBoardTable");
-		//boardSize = this.transform.Find("StoryBoardView/ViewPort/Content").GetComponent<RectTransform>().rect.size;
+		//LoadZipFile();
+		RefreshAll();
+		_boardSize = cutView.GetComponent<RectTransform>().rect.size;
 
-		
-		LoadZipFile();
-		boardSize.y = -(cutView.bottomYPos + 500.0f);
 	}
 
 	// Update is called once per frame
@@ -41,7 +43,7 @@ public partial class StoryBoard : MonoBehaviour
 
 	public void CreateStoryBoard()
 	{
-		var texture = TextureExtractor.GetTexture(boardSize, cutView.cutImages.ToList(), Color.white, 20);
+		var texture = TextureExtractor.GetTexture(boardSize, cutView.cutImageActived.ToList(), Color.white, 20);
 		UploadStoryBoard(texture.EncodeToPNG(), "ToonName" + title);
 		
 	}

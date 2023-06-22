@@ -12,27 +12,30 @@ public static class TextureExtractor
 
 		foreach (var image in cutImageList)
 		{
-			ComposeCut(texture, image);
+			texture = ComposeCut(texture, image);
 		}
 		return texture;
 	}
 
 
-	private static void ComposeCut(Texture2D background, Image image)
+	private static Texture2D ComposeCut(Texture2D background, Image image)
 	{
-		var startX = image.rectTransform.position.x - image.rectTransform.rect.width / 2;
-		var startY = image.rectTransform.position.y + image.rectTransform.rect.height / 2;
-
+		var startX = image.rectTransform.localPosition.x - image.rectTransform.rect.width / 2;
+		var startY = (-image.rectTransform.localPosition.y);
+		var copyTexture = duplicateTexture(image.sprite.texture);
 
 		// »óÇÏÁÂ¿ì ¾Æ·¡ : ¿ø·¡ÁÂÇ¥ - ³ôÀÌ±îÁö   ÁÂ¿ì : ¿ø·¡ÁÂÇ¥ +- ³ÐÀÌ¹Ý
-		for(int x = (int)startX; x < image.rectTransform.rect.width; x++)
+		for(int x = 0; x < image.rectTransform.rect.width; x++)
 		{
-			for (int y = (int)startY; y > startY - image.rectTransform.rect.height; y--)
+			for (int y = 0; y < image.rectTransform.rect.height; y++)
 			{
-				background.SetPixel(x, y, image.sprite.texture.GetPixel(x, y));
+				background.SetPixel((int)startX + x, (int)startY + y, copyTexture.GetPixel(x, y));
+				if (background.width < (int)startX + x || background.height < (int)startY + y)
+					goto EndLoop;
 			}
 		}
-		
+		EndLoop:
+		return background;
 	}
 
 	private static void FillColor(Texture2D texture, Color color)
@@ -46,5 +49,25 @@ public static class TextureExtractor
 
 			}
 		}
+	}
+
+	private static Texture2D duplicateTexture(Texture2D source)
+	{
+		RenderTexture renderTex = RenderTexture.GetTemporary(
+					source.width,
+					source.height,
+					0,
+					RenderTextureFormat.Default,
+					RenderTextureReadWrite.Linear);
+
+		Graphics.Blit(source, renderTex);
+		RenderTexture previous = RenderTexture.active;
+		RenderTexture.active = renderTex;
+		Texture2D readableText = new Texture2D(source.width, source.height);
+		readableText.ReadPixels(new Rect(0, 0, renderTex.width, renderTex.height), 0, 0);
+		readableText.Apply();
+		RenderTexture.active = previous;
+		RenderTexture.ReleaseTemporary(renderTex);
+		return readableText;
 	}
 }

@@ -15,10 +15,11 @@ public class CutView : MonoBehaviour
 
     public Dictionary<uint, Cut> cutDict => cutSet;
     public IEnumerable<Cut> cuts => cutSet.Values;
-    public IEnumerable<Image> cutImages => cuts.Select( x => x.GetComponent<Image>() );
+    public IEnumerable<Image> cutImages => cuts.Select(x => x.GetComponent<Image>());
+    public IEnumerable<Image> cutImageActived => cuts.Select(x => x.GetComponent<Image>()).Where(x => x.gameObject.activeSelf == true);
 
-	//public IEnumerable<Cut> cutList => cutDic.SelectMany(x => x.Value);
-	public float bottomYPos { 
+    //public IEnumerable<Cut> cutList => cutDic.SelectMany(x => x.Value);
+    public float bottomYPos { 
         get {
             var count = cuts.Where(x => x.gameObject.activeSelf == true).Count();
             if (count ==  0)
@@ -41,7 +42,7 @@ public class CutView : MonoBehaviour
 	{
         cutSet.Clear();
         imageCount = 0;
-        var spriteList = ImageLoader.GetSpriteswithTextures(table.resourceDir);
+        var spriteList = ImageLoader.GetSpriteswithTextures(Application.persistentDataPath);
         // 리소스파일에서 텍스쳐 수만큼 팩토리에 생성요청
         foreach (var sprite in spriteList)
         {
@@ -55,7 +56,7 @@ public class CutView : MonoBehaviour
 	void Start()
     {
         table = Resources.Load<StoryBoardTable>("Tables/StoryBoardTable");
-
+        Refresh();
     }
 
     // Update is called once per frame
