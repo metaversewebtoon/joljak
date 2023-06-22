@@ -24,7 +24,7 @@ public class CutView : MonoBehaviour
             if (count ==  0)
                 return -100.0f;
             else
-                return cuts.Where(x=>x.gameObject.activeSelf == true).Select(x => x.transform.localPosition.y).Min() - 500.0f; 
+                return cuts.Where(x=>x.gameObject.activeSelf == true).Select(x => x.transform.localPosition.y).Min(); 
         } 
     }
 	public float topYPos { 
@@ -37,10 +37,9 @@ public class CutView : MonoBehaviour
         }
     }
 
-	void Start()
-    {
-        table = Resources.Load<StoryBoardTable>("Tables/StoryBoardTable");
-
+    public void Refresh()
+	{
+        cutSet.Clear();
         imageCount = 0;
         var spriteList = ImageLoader.GetSpriteswithTextures(table.resourceDir);
         // 리소스파일에서 텍스쳐 수만큼 팩토리에 생성요청
@@ -51,6 +50,12 @@ public class CutView : MonoBehaviour
             cutSet.Add(imageCount, cut);
             imageCount++;
         }
+    }
+
+	void Start()
+    {
+        table = Resources.Load<StoryBoardTable>("Tables/StoryBoardTable");
+
     }
 
     // Update is called once per frame

@@ -26,7 +26,7 @@ public partial class StoryBoard : MonoBehaviour
 		
 		title = 1;
 		table = Resources.Load<StoryBoardTable>("Tables/StoryBoardTable");
-		boardSize = this.transform.Find("StoryBoardView/ViewPort/Content").GetComponent<RectTransform>().rect.size;
+		//boardSize = this.transform.Find("StoryBoardView/ViewPort/Content").GetComponent<RectTransform>().rect.size;
 
 		
 		LoadZipFile();
@@ -60,6 +60,12 @@ public partial class StoryBoard : MonoBehaviour
 		cut.pos = new Vector2(650.0f, cutView.bottomYPos);
 		cut.gameObject.SetActive(true);
 		
+	}
+
+	private void RefreshAll()
+	{
+		cutView.Refresh();
+		sceneView.Refresh();
 	}
 
 }

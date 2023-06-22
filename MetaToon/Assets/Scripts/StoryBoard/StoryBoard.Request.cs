@@ -17,10 +17,10 @@ public partial class StoryBoard
 	//private string token = LoginScene.token; // 로그인 시 생성되는 코드(추후 로컬에서 가져오는 방식으로 변경 예정)
 	public void LoadZipFile()
 	{
-		var form = new WWWForm();
-		//var request =  UnityWebRequest.Get("http://" + table.serverIP + "/file_archive");
-		StartCoroutine(test());
-		//StartCoroutine(SendRequest(request));
+		
+		var request =  UnityWebRequest.Get("http://" + table.serverIP + "/file_archive");
+		//StartCoroutine(test());
+		StartCoroutine(SendRequest(request));
 		//var data = request.downloadHandler.data;
 		//File.WriteAllBytes(table.zipPath, data);
 		//Unzip(table.zipPath, table.resourceDir);
@@ -41,8 +41,6 @@ public partial class StoryBoard
 	{
 		try
 		{
-			if (Directory.Exists(desPath))
-				Directory.Delete(desPath);
 			ZipFile.ExtractToDirectory(sourcePath, desPath);
 			return true;
 		}
@@ -86,6 +84,10 @@ public partial class StoryBoard
 			else
 			{
 				Debug.Log("Image sent successfully");
+				var data = webrequest.downloadHandler.data;
+				File.WriteAllBytes(table.zipPath, data);
+				Unzip(table.zipPath, "Assets/Resources/"+ table.resourceDir);
+				RefreshAll();
 			}
 		}
 	}

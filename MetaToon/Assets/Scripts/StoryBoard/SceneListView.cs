@@ -10,21 +10,24 @@ public class SceneListView : MonoBehaviour
     // Start is called before the first frame update
 
     public IEnumerable<SceneImage> sceneImages => sceneImageSet.Values;
-    void Start()
-    {
-        table = Resources.Load<StoryBoardTable>("Tables/StoryBoardTable");
 
+    public void Refresh()
+	{
         imageCount = 0;
         var spriteList = ImageLoader.GetSpriteswithTextures(table.resourceDir);
         // 리소스파일에서 텍스쳐 수만큼 팩토리에 생성요청
-        foreach(var sprite in spriteList)
-		{
+        foreach (var sprite in spriteList)
+        {
             var sceneImage = SceneImageFactory.CreateSceneImage(this.transform, imageCount, sprite, table);
             sceneImage.Init(imageCount);
-            sceneImageSet[imageCount]=sceneImage;
+            sceneImageSet[imageCount] = sceneImage;
             imageCount++;
-		}
-        
+        }
+    }
+    void Start()
+    {
+        table = Resources.Load<StoryBoardTable>("Tables/StoryBoardTable");
+                
     }
 
     // Update is called once per frame
