@@ -19,7 +19,11 @@ exports.upload = async (ctx) => {
   }
 }
 
-/** 파일 업데이트 */
+/**
+ * 파일 업데이트
+ * @param {int} fileId 변경할 파일의 id값
+ * @param {string} fileTitle 파일 이름 or 웹툰 제목
+ */
 exports.update = async (ctx) => {
   let file = ctx.request.file;
   let { fileId, fileTitle } = ctx.request.body;
@@ -31,7 +35,7 @@ exports.update = async (ctx) => {
   console.log("Saved Path : " + file.path);
   
   if(affectedRows > 0) {
-    ctx.body = { result: "ok", id: insertId }
+    ctx.body = { result: "ok", id: fileId }
   } else {
     ctx.body = { result: "fail", }
   }
@@ -39,8 +43,8 @@ exports.update = async (ctx) => {
 
 /*
 html header body 
-
 */
+
 /** 파일 다운로드 */
 exports.download = async ctx => {
   // ctx.response.setHeader("Access-Control-Allow-Origin", "*");
@@ -60,9 +64,13 @@ exports.download = async ctx => {
 
 /** 압축파일로 반환 */
 exports.archive = async ctx => {
-  // ctx.response.setHeader("Access-Control-Allow-Origin", "*");
-  let item = await q_archive();
   const zip = new JSZip;
+  let user = ctx.request.user;
+  console.log("User's ID: ", user.id);
+  let userId = user.id;
+
+  let item = await q_archive(userId);
+  console.log("Number of items: ", item.length);
 
   if(item == null)  {
     ctx.body = {result: "failure in retrieving files."};
@@ -71,24 +79,26 @@ exports.archive = async ctx => {
 
   for(let i = 0; i < item.length; i++)
   {
-    zip.file(item[i].file_path, item[i].original_name);
+    zip.file(item[i].id + "_" + item[i].file_title + ".png", fs.createReadStream(item[i].file_path));
   }
 
   const stream = new PassThrough();
   zip.generateNodeStream({type: 'nodebuffer', streamFiles: true}).pipe(stream);
 
-  ctx.set('Content-Type', 'application/zip');
-  ctx.set('Content-Disposition', 'attatchment; filename="files.zip"');
+  ctx.response.set('Content-Type', 'application/zip');
+  ctx.response.set('Content-Disposition', 'attatchment; filename="files.zip"');
   
   ctx.statusCode = 200;
   ctx.body = stream;
+  // ctx.body = fs.createReadStream(item[0].file_path) // it works...
 }
 
+/** 저장된 파일 id값 반환 */
 exports.index = async ctx => {
   let item = await q_index();
 
   if(item == null) {
-    ctx.body = {result: "failure in retrieving files."}
+    ctx.body = {result: "failure in retrieving file."}
     return;
   }
 
