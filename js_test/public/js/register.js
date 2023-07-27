@@ -36,7 +36,7 @@ document
         console.log(data);
 
         // Redirect to login.html
-        window.location.replace("login.html");
+        window.location.href = "/login";
       })
       .catch(function (error) {
         // Handle error
