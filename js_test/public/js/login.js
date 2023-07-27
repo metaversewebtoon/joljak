@@ -40,7 +40,9 @@ document
           // Store token in cookie or local storage for later use
           document.cookie = "token=" + token;
           console.log(document.cookie);
-          localStorage.setItem('token', token);
+          localStorage.setItem("token", token);
+
+          alert("로그인 성공");
 
           // Redirect to webtoon_test.html
           window.location.href = "/";

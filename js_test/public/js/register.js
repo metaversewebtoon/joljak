@@ -35,6 +35,8 @@ document
         // Handle successful response
         console.log(data);
 
+        alert("회원가입 성공");
+
         // Redirect to login.html
         window.location.href = "/login";
       })
