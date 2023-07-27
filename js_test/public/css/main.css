@@ -61,13 +61,13 @@ button {
   cursor: pointer;
   border-radius: 4px;
   font-weight: bold;
-  transition: background-color 0.2s;
+  transition: 0.3s;
 }
 
 button:hover {
   padding: 16px 28px;
   font-size: 20px;
-  transition: 0.2s;
+  transition: 0.3s;
   background-color: #45a049;
 }
 
