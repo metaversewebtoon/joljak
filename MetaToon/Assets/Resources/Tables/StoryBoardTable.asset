@@ -15,6 +15,6 @@ MonoBehaviour:
   serverIP: 34.145.65.5:46351
   resourceDir: StoryBoard/Screenshots
   storyBoardDir: StoryBoard/StoryBoardImages
-  zipPath: Assets/Resources/StoryBoard/Zips/test.zip
+  zipPath: scenes.zip
   sceneImagePrefab: {fileID: -1802426575397075016, guid: 15fa1b778065e844ab5ca84858715efe, type: 3}
   cutPrefab: {fileID: 9114499739189962947, guid: ef921af26fd91ce428b78a2f6ba2e8de, type: 3}

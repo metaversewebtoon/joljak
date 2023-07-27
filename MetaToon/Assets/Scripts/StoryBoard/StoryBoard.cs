@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -19,7 +20,7 @@ public partial class StoryBoard : MonoBehaviour
 	public Vector2 boardSize
 	{
 		get {
-			_boardSize.y = -(cutView.bottomYPos - 500.0f);
+			_boardSize.y = (-cutView.bottomYPos + 200.0f);
 			return _boardSize; 
 		}
 	}
@@ -29,8 +30,15 @@ public partial class StoryBoard : MonoBehaviour
 		
 		title = 1;
 		table = Resources.Load<StoryBoardTable>("Tables/StoryBoardTable");
+
+		// init persistance datapath
+		string[] filePaths = Directory.GetFiles(Application.persistentDataPath);
+		foreach (string filePath in filePaths)
+			File.Delete(filePath);
+
 		LoadZipFile();
-		_boardSize = cutView.GetComponent<RectTransform>().rect.size;
+		StartCoroutine(WaitStoryboardsize());
+		
 
 	}
 
@@ -43,6 +51,8 @@ public partial class StoryBoard : MonoBehaviour
 	public void CreateStoryBoard()
 	{
 		var texture = TextureExtractor.GetTexture(boardSize, cutView.cutImageActived.ToList(), Color.white, 20);
+		//var png = texture.EncodeToPNG();
+		//File.WriteAllBytes("Assets/Resources/"+table.storyBoardDir+"/toon.png", png); // temp save
 		UploadStoryBoard(texture.EncodeToPNG(), "ToonName" + title);
 		
 	}
@@ -67,6 +77,14 @@ public partial class StoryBoard : MonoBehaviour
 	{
 		cutView.Refresh();
 		sceneView.Refresh();
+	}
+
+	public IEnumerator WaitStoryboardsize()
+	{
+		yield return new WaitForSeconds(0.1f);
+
+		_boardSize = cutView.GetComponent<RectTransform>().rect.size;
+		Debug.Log(_boardSize);
 	}
 
 }
