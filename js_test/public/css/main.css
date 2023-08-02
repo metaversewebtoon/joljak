@@ -41,10 +41,14 @@ nav a:hover {
 /* Style for main buttons */
 main {
   text-align: center;
+  background-image: url("/img/bdc2a5190927b14c.jpeg");
+  background-size: 100%;
 }
 
 h2 {
-  font-size: 30px;
+  margin-top: 60px;
+  font-size: 70px;
+  color: white;
 }
 
 form {
@@ -57,7 +61,7 @@ button {
   color: #fff;
   border: none;
   padding: 12px 24px;
-  font-size: 16px;
+  font-size: 36px;
   cursor: pointer;
   border-radius: 4px;
   font-weight: bold;
@@ -66,8 +70,8 @@ button {
 
 button:hover {
   padding: 16px 28px;
-  font-size: 20px;
-  transition: 0.3s;
+  font-size: 46px;
+  transition: 0.3bode servers;
   background-color: #45a049;
 }
 
@@ -93,6 +97,7 @@ main {
   max-width: 1200px;
   margin: 0 auto;
   padding: 40px;
+  padding-bottom: 400px;
 }
 
 section {
