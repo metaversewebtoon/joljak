@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 using System.Runtime.InteropServices;
+using TMPro;
 
 public partial class StoryBoard
 { 
@@ -14,6 +15,9 @@ public partial class StoryBoard
 	private byte[] pngArray; // Byte array of the Image
 
 	private string token;
+
+	public TMP_Text resultMsg;
+	public GameObject panel;
 
 	[DllImport("__Internal")]
 	private static extern string GetLocalStorageValue(string key);
@@ -36,7 +40,6 @@ public partial class StoryBoard
 		var request = UnityWebRequest.Post("http://" + table.serverIP + "/toon/upload",form);
 		request.SetRequestHeader("token", token);
 		StartCoroutine(SendRequest(request));
-		
 	}
 
 	
@@ -65,10 +68,11 @@ public partial class StoryBoard
 			if (webrequest.result != UnityWebRequest.Result.Success)
 			{
 				Debug.Log(webrequest.error);
+				StartCoroutine(ShowPanel());
+				resultMsg.text = "Upload Failed";
 			}
 			else
 			{
-				Debug.Log("Image sent successfully");
 				if (webrequest.method.Equals("GET"))
 				{
 					var data = webrequest.downloadHandler.data;
@@ -77,8 +81,25 @@ public partial class StoryBoard
 					Unzip(zippath, Application.persistentDataPath);
 					RefreshAll();
 				}
-				
+                else
+                {
+					Debug.Log("Image sent successfully");
+					StartCoroutine(ShowPanel());
+					resultMsg.text = "Upload Success";
+				}
 			}
 		}
+	}
+
+	IEnumerator ShowPanel()
+	{
+		panel.SetActive(true);
+		yield return new WaitForSeconds(3f);
+		StartCoroutine(HidePanel());
+	}
+	IEnumerator HidePanel()
+	{
+		yield return new WaitForSeconds(1f);
+		panel.SetActive(false);
 	}
 }

@@ -15,6 +15,7 @@ public class ImageEditor : MonoBehaviour
 
     public Button btn_CaptureScreen; // Button for Capturing screen
     public GameObject UserInterface; // Set UI(e.g. Canvas) from inspector menu
+    public GameObject PoseUI; // Set UI(e.g. Canvas) from inspector menu
 
     public string token;
     public uint seq;
@@ -53,6 +54,7 @@ public class ImageEditor : MonoBehaviour
         //}
         yield return null; // wait for 1 frame
         UserInterface.SetActive(true);
+        //PoseUI.SetActive(true);
     }
 
     /*
@@ -100,6 +102,7 @@ public class ImageEditor : MonoBehaviour
     void CaptureScreen()
     {
         UserInterface.SetActive(false);
+        //PoseUI.SetActive(false);
         // If UI is hidden
         if (!UserInterface.activeSelf)
         {
