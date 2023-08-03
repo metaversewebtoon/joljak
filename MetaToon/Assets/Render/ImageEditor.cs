@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
 using System.Runtime.InteropServices;
+using TMPro;
 
 public class ImageEditor : MonoBehaviour
 {
@@ -15,10 +16,12 @@ public class ImageEditor : MonoBehaviour
 
     public Button btn_CaptureScreen; // Button for Capturing screen
     public GameObject UserInterface; // Set UI(e.g. Canvas) from inspector menu
-    public GameObject PoseUI; // Set UI(e.g. Canvas) from inspector menu
 
     public string token;
     public uint seq;
+
+    public TMP_Text resultMsg;
+    public GameObject panel;
 
 
     // 웹 브라우저에서 localStorage의 'token' 키에 저장된 값을 가져옵니다.
@@ -31,6 +34,7 @@ public class ImageEditor : MonoBehaviour
     {
         btn_CaptureScreen.onClick.AddListener(CaptureScreen);
         seq = 0;
+        //token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWFhIiwiaWQiOjEsImlhdCI6MTY4NTM1NDM4NX0.d2We3d - BTPOiT_73A_TsJD1TwQmbzW7ZjxonuTvH0j0";
         token = GetLocalStorageValue("token");
         Debug.Log("Token: " + token);
     }
@@ -45,64 +49,13 @@ public class ImageEditor : MonoBehaviour
 
     public IEnumerator WaitFrame()
     {
-        // Number of frames to wait
-        //int skipFrame = 1;
-        //Debug.Log(skipFrame);
-        //for (int i = 0; i < skipFrame; i++)
-        //{
-        //    yield return null;
-        //}
         yield return null; // wait for 1 frame
         UserInterface.SetActive(true);
-        //PoseUI.SetActive(true);
     }
-
-    /*
-    void CaptureScreen()
-    {
-        UserInterface.SetActive(false);
-        // If UI is hidden
-        if (!UserInterface.activeSelf)
-        {
-            try
-            {
-                // Capture and Save Screen
-                
-                DirectoryInfo screenshotDirectory = Directory.CreateDirectory(dirName);
-                string fullPath = Path.Combine(screenshotDirectory.FullName, fileName);
-                ScreenCapture.CaptureScreenshot(fullPath);
-                Debug.Log("Saved Screenshot : " + fullPath);
-
-                // Send Byte array of the image to DB
-                byte[] imageData = File.ReadAllBytes(fullPath);
-                
-
-                // Capture the current screen as a texture
-                Texture2D texture = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
-                texture.ReadPixels(new Rect(0, 0, Screen.width, Screen.height), 0, 0);
-
-
-                // Convert the texture to a byte array
-                byte[] imageData = texture.EncodeToPNG();
-
-                StartCoroutine(SendString(imageData));
-            }
-            catch (System.Exception e)
-            {
-                Debug.Log("Error : " + e.Message);
-            }
-            finally
-            {
-                StartCoroutine(WaitFrame());
-            }
-        }
-    }
-    */
 
     void CaptureScreen()
     {
         UserInterface.SetActive(false);
-        //PoseUI.SetActive(false);
         // If UI is hidden
         if (!UserInterface.activeSelf)
         {
@@ -137,13 +90,6 @@ public class ImageEditor : MonoBehaviour
         }
     }
 
-
-
-
-
-
-
-
     public IEnumerator SendString(byte[] imageData)
     {
         // Create a form to send the byte array to the server
@@ -166,11 +112,27 @@ public class ImageEditor : MonoBehaviour
             if (requestPost.result != UnityWebRequest.Result.Success)
             {
                 Debug.Log(requestPost.error);
+                StartCoroutine(ShowPanel());
+                resultMsg.text = "Capture Failed";
             }
             else
             {
                 Debug.Log("Image sent successfully");
+                StartCoroutine(ShowPanel());
+                resultMsg.text = "Capture Success";
             }
         }
+    }
+
+    IEnumerator ShowPanel()
+    {
+        panel.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        StartCoroutine(HidePanel());
+    }
+    IEnumerator HidePanel()
+    {
+        yield return new WaitForSeconds(1f);
+        panel.SetActive(false);
     }
 }
