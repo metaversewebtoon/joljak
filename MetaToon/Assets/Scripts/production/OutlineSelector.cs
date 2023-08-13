@@ -42,7 +42,7 @@ public class OutlineSelector : MonoBehaviour
         }
 
         // Selection
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
         {
             if (highlight)
             {
