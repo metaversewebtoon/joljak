@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "StoryBoardTable", menuName = "Scriptable Objects/StoryBoardTable", order = int.MaxValue)]
 public class StoryBoardTable : ScriptableObject
@@ -11,4 +12,5 @@ public class StoryBoardTable : ScriptableObject
     public string zipPath;
     public SceneImage sceneImagePrefab;
     public Cut cutPrefab;
+    public Sprite thumnailSprite;
 }

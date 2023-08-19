@@ -12,6 +12,7 @@ public class SceneImageFactory
 		var sceneImage = Object.Instantiate(sceneImagePrefab);
 		sceneImage.transform.parent = parent;
 		sceneImage.name = $"SceneImage{imageNum}";
+		sceneImage.thumb.gameObject.SetActive(false);
 		sceneImage.GetComponent<Image>().sprite = sprite;
 		return sceneImage;
 	}

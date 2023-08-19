@@ -12,6 +12,9 @@ public class SceneImage : MonoBehaviour, IPointerClickHandler
     // Start is called before the first frame update
     StoryBoard storyBoard;
     uint id;
+
+    public Image thumb;
+
     void Start()
     {
         Debug.Log(transform.root.name);
@@ -34,6 +37,14 @@ public class SceneImage : MonoBehaviour, IPointerClickHandler
     public void OnPointerClick(PointerEventData eventData)
     {
         Debug.Log(transform.name);
-        storyBoard.EnableCut(id);
+        if (storyBoard.selectthumb)
+        {
+            storyBoard.RefreshThumb(id);
+        }
+        else
+        {
+            storyBoard.EnableCut(id);
+        }
     }
+
 }

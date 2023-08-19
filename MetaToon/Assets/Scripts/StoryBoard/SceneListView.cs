@@ -24,6 +24,15 @@ public class SceneListView : MonoBehaviour
             imageCount++;
         }
     }
+
+    public void RefreshThumb(uint thumbnumber)
+	{
+        foreach (var sc in sceneImages)
+		{
+            sc.thumb.gameObject.SetActive(false);
+		}
+        sceneImageSet[thumbnumber].thumb.gameObject.SetActive(true);
+	}
     void Start()
     {
         table = Resources.Load<StoryBoardTable>("Tables/StoryBoardTable");
