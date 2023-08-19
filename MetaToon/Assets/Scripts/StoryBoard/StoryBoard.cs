@@ -25,7 +25,7 @@ public partial class StoryBoard : MonoBehaviour
 	private bool _selectthumb = false;
 	public uint thumbid = 0;
 
-	public bool selectthumb { get { return selectthumb; } }
+	public bool selectthumb { get { return _selectthumb; } }
 
 	public Vector2 boardSize
 	{

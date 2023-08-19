@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class TitleView : MonoBehaviour
 {
     // Start is called before the first frame update
-    private InputField _field;
+    private TMP_InputField _field;
 
     public string titletext { 
         get
@@ -16,7 +17,7 @@ public class TitleView : MonoBehaviour
     }
     void Start()
     {
-        _field = GetComponent<InputField>();
+        _field = GetComponent<TMP_InputField>();
     }
     // Update is called once per frame
     void Update()
