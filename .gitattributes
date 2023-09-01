@@ -1,1 +1,2 @@
 MetaToon/Assets/Resources/background/* filter=lfs diff=lfs merge=lfs -text
+MetaToon/Assets/Resources/material/* filter=lfs diff=lfs merge=lfs -text
