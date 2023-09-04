@@ -51,11 +51,13 @@ public class ImageEditor : MonoBehaviour
     {
         yield return null; // wait for 1 frame
         UserInterface.SetActive(true);
+        ControlObjectAble(true);
     }
 
     void CaptureScreen()
     {
         UserInterface.SetActive(false);
+        ControlObjectAble(false);
         // If UI is hidden
         if (!UserInterface.activeSelf)
         {
@@ -135,4 +137,11 @@ public class ImageEditor : MonoBehaviour
         yield return new WaitForSeconds(1f);
         panel.SetActive(false);
     }
+
+    void ControlObjectAble(bool state)
+	{
+        GameObject[] controls = GameObject.FindGameObjectsWithTag("control");
+        foreach (var c in controls)
+            c.SetActive(state);
+	}
 }
