@@ -7,6 +7,8 @@ public class cameraScript : MonoBehaviour
 {
 	public float rotateSpeed = 500.0f;
 	public float scrollSpeed = 10.0f;
+	public bool controlObjectMove;
+
 	float dragSpeed = 30.0f;
 	private float xRotate, yRotate, xRotateMove, yRotateMove;
 	LayerMask layerMask;
@@ -24,11 +26,13 @@ public class cameraScript : MonoBehaviour
 
 	private void Start()
 	{
-
+		controlObjectMove = false;
 	}
 
 	void Update()
 	{
+		if (controlObjectMove)
+			return;
 		if(hitObject)
 		{
 			_lookVec = Vector3.Normalize(hitObject.transform.position+Vector3.up - this.transform.position);

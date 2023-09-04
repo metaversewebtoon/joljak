@@ -13,6 +13,7 @@ public class ControlTarget : MonoBehaviour
     private Vector3 _downMousePoint;
     private Vector3 deltaPos;
 
+    public cameraScript camscript;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +23,8 @@ public class ControlTarget : MonoBehaviour
         Z = this.transform.Find("z");
 
         isDragged = false;
+
+        camscript = Camera.main.GetComponent<cameraScript>();
     }
 
     // Update is called once per frame
@@ -38,6 +41,8 @@ public class ControlTarget : MonoBehaviour
                 isDragged = true;
                 _downMousePoint = ray.GetPoint(distance);
                 deltaPos =   _downMousePoint - transform.position;
+                if(_downHit.transform.tag.Equals("control"))
+                    camscript.controlObjectMove = true;
             }
         }
 
@@ -57,7 +62,10 @@ public class ControlTarget : MonoBehaviour
         }
 
         if (Input.GetMouseButtonUp(0))
+        {
             isDragged = false;
+            camscript.controlObjectMove = false;
+        }
     }
 }
 
