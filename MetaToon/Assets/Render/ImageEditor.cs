@@ -22,6 +22,7 @@ public class ImageEditor : MonoBehaviour
 
     public TMP_Text resultMsg;
     public GameObject panel;
+    private GameObject[] controls;
 
 
     // 웹 브라우저에서 localStorage의 'token' 키에 저장된 값을 가져옵니다.
@@ -37,6 +38,7 @@ public class ImageEditor : MonoBehaviour
         //token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWFhIiwiaWQiOjEsImlhdCI6MTY4NTM1NDM4NX0.d2We3d - BTPOiT_73A_TsJD1TwQmbzW7ZjxonuTvH0j0";
         token = GetLocalStorageValue("token");
         Debug.Log("Token: " + token);
+        controls = GameObject.FindGameObjectsWithTag("control");
     }
 
 
@@ -140,7 +142,7 @@ public class ImageEditor : MonoBehaviour
 
     void ControlObjectAble(bool state)
 	{
-        GameObject[] controls = GameObject.FindGameObjectsWithTag("control");
+        
         foreach (var c in controls)
             c.SetActive(state);
 	}
