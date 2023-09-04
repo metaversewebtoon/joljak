@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <link rel="stylesheet" href="/css/webtoon_test.css" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>웹툰 뷰어 플랫폼</title>
+    <!-- JSZip 사용하기 위한 소스 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.6.0/jszip.min.js"></script>
+  </head>
+  <body>
+    <header>
+      <h1>웹툰 뷰어</h1>
+      <nav>
+        <ul>
+          <li><a href="/">홈</a></li>
+          <li><a id="link1" href=""></a></li>
+          <li><a id="link2" href=""></a></li>
+        </ul>
+      </nav>
+      <script src="/js/token_check.js"></script>
+      <script src="/js/logout.js"></script>
+    </header>
+    <main>
+      <section>
+        <h2>웹툰</h2>
+        <table id="webtoon-table">
+          <thead>
+              <tr>
+                  <th>웹툰 제목</th>
+              </tr>
+          </thead>
+          <tbody>
+              <!-- 여기에 서버에서 가져온 웹툰 목록이 추가 -->
+          </tbody>
+      </table>
+      </section>
+    </main>
+    <footer>
+      <p>웹툰 뷰어 플랫폼</p>
+    </footer>
+    <script>
+      // 서버에서 웹툰 이름을 가져오는 함수
+      function WebtoonTitles() {
+          fetch("http://34.145.65.5:46351/toon_title")
+              .then(response => response.json())
+              .then(data => {
+                  // 테이블에 웹툰 목록을 추가
+                  const tableBody = document.querySelector('#webtoon-table tbody');
+                  data.forEach(title => {
+                      const row = document.createElement('tr');
+                      const titleCell = document.createElement('td');
+                      const titleLink = document.createElement('a');
+                      titleLink.textContent = title.toon_title;
+                      titleLink.href = '/episode?toon_title=' + encodeURIComponent(title.toon_title);
+                      titleCell.appendChild(titleLink);
+                      row.appendChild(titleCell);
+                      tableBody.appendChild(row);
+                  });
+              })
+              .catch(error => {
+                  console.error('웹툰 목록을 가져오는 중 오류 발생:', error);
+              });
+      }
+
+      // 페이지 로드 시 웹툰 목록을 가져와서 테이블에 추가
+      window.addEventListener('load', WebtoonTitles);
+
+      function routeToEpisodePage(toonTitle){
+
+      }
+  </script>
+
+
+  </body>
+</html>

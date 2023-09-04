@@ -50,9 +50,16 @@ app.get('/imageEditor', (req, res) => {
 
 // viewer 페이지 라우트
 app.get('/viewer', (req, res) => {
-  res.sendFile(path.join(__dirname, 'html/webtoon_test.html'));
+  res.sendFile(path.join(__dirname, 'html/webtoon_viewer.html'));
 });
 
+// episode 페이지 라우트
+app.get('/episode', (req, res) => {
+  const toonTitle = req.query.toon_title;
+  res.sendFile(path.join(__dirname, 'html/webtoon_episode.html'));
+});
+
+/*
 // manhwa 페이지 라우트
 app.get('/webtoon1', (req, res) => {
   res.sendFile(path.join(__dirname, 'html/manhwa/sample_webtoon1.html'));
@@ -60,6 +67,7 @@ app.get('/webtoon1', (req, res) => {
 app.get('/webtoon2', (req, res) => {
   res.sendFile(path.join(__dirname, 'html/manhwa/sample_webtoon2.html'));
 });
+*/
 
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
