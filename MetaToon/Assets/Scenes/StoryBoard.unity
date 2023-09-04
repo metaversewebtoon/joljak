@@ -1132,7 +1132,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 864369695}
   m_HandleRect: {fileID: 864369694}
   m_Direction: 0
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -2021,6 +2021,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 087901266c6d8304e85bd9255139af42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  thumbnail: {fileID: 0}
   sceneView: {fileID: 1800860751}
   titleView: {fileID: 1166465067}
   cutView: {fileID: 29368155}
@@ -2776,7 +2777,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 976084253}
         m_TargetAssemblyTypeName: StoryBoard, Assembly-CSharp
-        m_MethodName: CreateStoryBoard
+        m_MethodName: ToggleThumb
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3586,8 +3587,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1076095782}
   m_HandleRect: {fileID: 1076095781}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.23718649
+  m_Value: 1.0000001
+  m_Size: 0.23725355
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3790,7 +3791,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 947215283}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.20463279
+  m_Size: 0.2046328
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

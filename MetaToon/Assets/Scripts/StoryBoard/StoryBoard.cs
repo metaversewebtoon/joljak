@@ -9,7 +9,7 @@ using System.Linq;
 public partial class StoryBoard : MonoBehaviour
 {   //첨에는 자동으로 캡쳐이미지 순서로 생성해놓기
 	private int title;
-	private SceneImage thumbnail;
+	public Image thumbnail;
 	
 
 	[SerializeField]
@@ -64,7 +64,10 @@ public partial class StoryBoard : MonoBehaviour
 		//var png = texture.EncodeToPNG();
 		//File.WriteAllBytes("Assets/Resources/"+table.storyBoardDir+"/toon.png", png); // temp save
 		UploadStoryBoard(texture.EncodeToPNG(), titleView.titletext);
-		
+
+		if (thumbnail)
+			UploadThumbNail(thumbnail.sprite.texture.EncodeToPNG(), titleView.titletext);
+
 	}
 
 	public void DisableCut()

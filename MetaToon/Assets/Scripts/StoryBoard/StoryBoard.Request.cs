@@ -42,7 +42,20 @@ public partial class StoryBoard
 		StartCoroutine(SendRequest(request));
 	}
 
-	
+	public void UploadThumbNail(byte[] imageData, string title)
+	{
+		token = GetLocalStorageValue("token");
+		//token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWFhIiwiaWQiOjEsImlhdCI6MTY4NTM1NDM4NX0.d2We3d - BTPOiT_73A_TsJD1TwQmbzW7ZjxonuTvH0j0";
+		var form = new WWWForm();
+		form.AddBinaryData("thumbnail", imageData, "Test.png", "image/png");
+		form.AddField("thumbnailId", 0);
+		form.AddField("thumbnailTitle", title);
+		var request = UnityWebRequest.Post("http://" + table.serverIP + "/thumbnail_upload", form);
+		request.SetRequestHeader("token", token);
+		StartCoroutine(SendRequest(request));
+	}
+
+
 
 	public bool Unzip( string sourcePath, string desPath)
 	{

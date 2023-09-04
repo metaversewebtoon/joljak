@@ -40,6 +40,7 @@ public class SceneImage : MonoBehaviour, IPointerClickHandler
         if (storyBoard.selectthumb)
         {
             storyBoard.RefreshThumb(id);
+            storyBoard.thumbnail = this.GetComponent<Image>();
         }
         else
         {

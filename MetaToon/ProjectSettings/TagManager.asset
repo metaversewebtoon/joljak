@@ -6,6 +6,7 @@ TagManager:
   tags:
   - avatar
   - Terrain
+  - control
   layers:
   - Default
   - TransparentFX
