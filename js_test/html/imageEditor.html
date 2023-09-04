@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="https://uicdn.toast.com/tui-image-editor/latest/tui-image-editor.css">
     <head>
         <meta charset="utf-8">
-        <title>TUI Image Editor</title>
+        <title>Image Editor</title>
         <script src="/js/readImages.js"></script>
         <script src="/js/updateImage.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.6.0/jszip.min.js"></script>
@@ -72,6 +72,13 @@
                     rotatingPointOffset: 70
                 }
             });  
+
+            document.addEventListener("DOMContentLoaded", function() {
+                var parentDiv  = document.querySelector('.tui-image-editor-header-buttons');
+                var childDivs = parentDiv.querySelectorAll('div');
+                childDivs[0].style.display = "none";
+                console.log(loadButton);
+            });
         </script>
     </body>
 </html>

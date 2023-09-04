@@ -25,16 +25,9 @@
     <main>
       <section>
         <h2>웹툰</h2>
-        <table id="webtoon-table">
-          <thead>
-              <tr>
-                  <th>웹툰 제목</th>
-              </tr>
-          </thead>
-          <tbody>
-              <!-- 여기에 서버에서 가져온 웹툰 목록이 추가 -->
-          </tbody>
-      </table>
+        <ul id="webtoon-table">
+          <!-- 여기에 서버에서 가져온 웹툰 목록이 추가 -->
+        </ul>
       </section>
     </main>
     <footer>
@@ -43,25 +36,29 @@
     <script>
       // 서버에서 웹툰 이름을 가져오는 함수
       function WebtoonTitles() {
-          fetch("http://34.145.65.5:46351/toon_title")
-              .then(response => response.json())
-              .then(data => {
-                  // 테이블에 웹툰 목록을 추가
-                  const tableBody = document.querySelector('#webtoon-table tbody');
-                  data.forEach(title => {
-                      const row = document.createElement('tr');
-                      const titleCell = document.createElement('td');
-                      const titleLink = document.createElement('a');
-                      titleLink.textContent = title.toon_title;
-                      titleLink.href = '/episode?toon_title=' + encodeURIComponent(title.toon_title);
-                      titleCell.appendChild(titleLink);
-                      row.appendChild(titleCell);
-                      tableBody.appendChild(row);
-                  });
-              })
-              .catch(error => {
-                  console.error('웹툰 목록을 가져오는 중 오류 발생:', error);
-              });
+        fetch("http://34.145.65.5:46351/toon_title")
+          .then(response => response.json())
+          .then(data => {
+            // 테이블에 웹툰 목록을 추가
+            const ul = document.querySelector('#webtoon-table');
+            data.forEach(title => {
+              if (title.toon_title !== "") {
+                const li = document.createElement('li');
+                li.className = "toon";
+
+                const liLink = document.createElement('a');
+
+                liLink.textContent = title.toon_title;
+                liLink.href = '/episode?toon_title=' + encodeURIComponent(title.toon_title);
+                li.appendChild(liLink);
+                ul.appendChild(li);
+              }
+
+            });
+          })
+          .catch(error => {
+            console.error('웹툰 목록을 가져오는 중 오류 발생:', error);
+          });
       }
 
       // 페이지 로드 시 웹툰 목록을 가져와서 테이블에 추가

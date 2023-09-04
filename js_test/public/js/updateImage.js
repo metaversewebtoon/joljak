@@ -1,8 +1,7 @@
 // 데이터를 서버에 전송하는 함수
 async function updateData() {
     // 서버 엔드포인트 URL 설정
-    const url = "http://34.145.65.5:46351/file/update"; // 서버 엔드포인트 주소로 대체해야 함
-    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWFhIiwiaWQiOjEsImlhdCI6MTY4NTM1NDM4NX0.d2We3d-BTPOiT_73A_TsJD1TwQmbzW7ZjxonuTvH0j0";
+    const url = "http://34.145.65.5:46351/file/update"; 
 
     const file = imageEditor.image;
     const imageUrl = imageEditor.toDataURL();

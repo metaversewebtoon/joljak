@@ -37,3 +37,17 @@ document.addEventListener("DOMContentLoaded", function() {
     link2.textContent = "회원가입";
   }
 });
+
+document.getElementById("productionButton").addEventListener("click", function (event) {
+  var token = localStorage.getItem("token");
+
+  if (!token) {
+    // 토큰이 없는 경우, 기본 동작(페이지 이동)을 막음
+    event.preventDefault(); 
+
+    // 알림창을 표시
+    alert("로그인이 필요합니다.");
+    // 로그인 페이지로 이동
+    window.location.href = "/login"; 
+  } 
+});
