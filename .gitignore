@@ -88,3 +88,6 @@ MetaToon/obj
 js_test/public/Build
 js_test/public/StreamingAssets
 js_test/public/TemplateData
+
+# .DS_STORE
+.DS_STORE

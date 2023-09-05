@@ -17,8 +17,8 @@ public class WebAvatarLoader : MonoBehaviour
         WebInterface.SetupRpmFrame(partner.Subdomain);
 #endif
     }
-    
-    public async void OnWebViewAvatarGeneratedAsync(string generatedUrl)
+
+    public void OnWebViewAvatarGenerated(string generatedUrl)
     {
         var avatarLoader = new AvatarLoader();
         avatarUrl = generatedUrl;
@@ -26,8 +26,8 @@ public class WebAvatarLoader : MonoBehaviour
         avatarName = splitUrl[3].Split('.');
         avatarLoader.OnCompleted += OnAvatarLoadCompleted;
         avatarLoader.OnFailed += OnAvatarLoadFailed;
-        await avatarLoader.LoadAvatar(avatarUrl);
-        doAttachScript(avatarName[0]); // ¾Æ¹ÙÅ¸¿¡ ÀÚ¼¼Á¶Á¤ ½ºÅ©¸³Æ® Àû¿ë
+        avatarLoader.LoadAvatar(avatarUrl);
+        doAttachScript(avatarName[0]); // ì•„ë°”íƒ€ì— ìì„¸ì¡°ì • ìŠ¤í¬ë¦½íŠ¸ ì ìš©
     }
 
     public void doAttachScript(string name)
@@ -36,21 +36,24 @@ public class WebAvatarLoader : MonoBehaviour
         if (obj)
         {
             obj.AddComponent<SA.FullBodyIKBehaviour>();
+            obj.AddComponent<AttachControlTarget>();
+            obj.AddComponent<BoxCollider>();
         }
         else
         {
-            Debug.Log(name + " ¾Æ¹ÙÅ¸¸¦ Ã£À» ¼ö ¾øÀ½");
+            Debug.Log(name + " ì•„ë°”íƒ€ë¥¼ ì°¾ì„ ìˆ˜ ì—†ìŒ");
         }
     }
 
     private void OnAvatarLoadCompleted(object sender, CompletionEventArgs args)
     {
-        //if (avatar) Destroy(avatar);
+        if (avatar) Destroy(avatar);
         avatar = args.Avatar;
+        avatar.transform.position = new Vector3(0, 0, 0);
     }
 
     private void OnAvatarLoadFailed(object sender, FailureEventArgs args)
     {
-        SDKLogger.Log(TAG,$"Avatar Load failed with error: {args.Message}");
+        SDKLogger.Log(TAG, $"Avatar Load failed with error: {args.Message}");
     }
 }
