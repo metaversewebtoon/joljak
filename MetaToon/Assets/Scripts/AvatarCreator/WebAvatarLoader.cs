@@ -18,7 +18,7 @@ public class WebAvatarLoader : MonoBehaviour
 #endif
     }
 
-    public void OnWebViewAvatarGenerated(string generatedUrl)
+    public async void OnWebViewAvatarGenerated(string generatedUrl)
     {
         var avatarLoader = new AvatarLoader();
         avatarUrl = generatedUrl;
@@ -26,7 +26,7 @@ public class WebAvatarLoader : MonoBehaviour
         avatarName = splitUrl[3].Split('.');
         avatarLoader.OnCompleted += OnAvatarLoadCompleted;
         avatarLoader.OnFailed += OnAvatarLoadFailed;
-        avatarLoader.LoadAvatar(avatarUrl);
+        await avatarLoader.LoadAvatar(avatarUrl);
         doAttachScript(avatarName[0]); // 아바타에 자세조정 스크립트 적용
     }
 
@@ -37,7 +37,11 @@ public class WebAvatarLoader : MonoBehaviour
         {
             obj.AddComponent<SA.FullBodyIKBehaviour>();
             obj.AddComponent<AttachControlTarget>();
-            obj.AddComponent<BoxCollider>();
+            BoxCollider boxCollider = obj.AddComponent<BoxCollider>();
+            obj.name = obj.name + "_avatar";
+
+            boxCollider.size = new Vector3(0.5f, 0.5f, 0.3f);
+            boxCollider.center = new Vector3(0.0f, 1.29f, 0.0f);
         }
         else
         {
