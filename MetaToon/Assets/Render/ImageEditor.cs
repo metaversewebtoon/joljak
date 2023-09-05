@@ -1,5 +1,6 @@
 using System.Collections;
 using System.IO;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
@@ -18,6 +19,7 @@ public class ImageEditor : MonoBehaviour
     public GameObject UserInterface; // Set UI(e.g. Canvas) from inspector menu
 
     public string token;
+    private string defaultToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWFhIiwiaWQiOjEsImlhdCI6MTY4NTM1NDM4NX0.d2We3d - BTPOiT_73A_TsJD1TwQmbzW7ZjxonuTvH0j0"; // 기본 토큰 값
     public uint seq;
 
     public TMP_Text resultMsg;
@@ -35,9 +37,17 @@ public class ImageEditor : MonoBehaviour
     {
         btn_CaptureScreen.onClick.AddListener(CaptureScreen);
         seq = 0;
-        //token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWFhIiwiaWQiOjEsImlhdCI6MTY4NTM1NDM4NX0.d2We3d - BTPOiT_73A_TsJD1TwQmbzW7ZjxonuTvH0j0";
-        token = GetLocalStorageValue("token");
-        Debug.Log("Token: " + token);
+        try
+        {
+            token = GetLocalStorageValue("token");
+        }
+        catch (Exception e)
+        {
+            // 오류가 발생한 경우 예외 처리
+            Debug.Log("로컬 스토리지 액세스 오류: " + e.Message);
+            // 기본 토큰 값을 사용
+            token = defaultToken;
+        }
         controls = GameObject.FindGameObjectsWithTag("control");
     }
 
