@@ -18,7 +18,7 @@ public class WebAvatarLoader : MonoBehaviour
 #endif
     }
     
-    public void OnWebViewAvatarGeneratedAsync(string generatedUrl)
+    public async void OnWebViewAvatarGeneratedAsync(string generatedUrl)
     {
         var avatarLoader = new AvatarLoader();
         avatarUrl = generatedUrl;
@@ -26,7 +26,7 @@ public class WebAvatarLoader : MonoBehaviour
         avatarName = splitUrl[3].Split('.');
         avatarLoader.OnCompleted += OnAvatarLoadCompleted;
         avatarLoader.OnFailed += OnAvatarLoadFailed;
-        avatarLoader.LoadAvatar(avatarUrl);
+        await avatarLoader.LoadAvatar(avatarUrl);
         doAttachScript(avatarName[0]); // 아바타에 자세조정 스크립트 적용
     }
 
@@ -45,7 +45,7 @@ public class WebAvatarLoader : MonoBehaviour
 
     private void OnAvatarLoadCompleted(object sender, CompletionEventArgs args)
     {
-        if (avatar) Destroy(avatar);
+        //if (avatar) Destroy(avatar);
         avatar = args.Avatar;
     }
 
