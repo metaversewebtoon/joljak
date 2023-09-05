@@ -48,7 +48,7 @@ public class ImageEditor : MonoBehaviour
             // 기본 토큰 값을 사용
             token = defaultToken;
         }
-        controls = GameObject.FindGameObjectsWithTag("control");
+        
     }
 
 
@@ -68,8 +68,9 @@ public class ImageEditor : MonoBehaviour
 
     void CaptureScreen()
     {
-        UserInterface.SetActive(false);
         ControlObjectAble(false);
+        UserInterface.SetActive(false);
+        
         // If UI is hidden
         if (!UserInterface.activeSelf)
         {
@@ -152,7 +153,8 @@ public class ImageEditor : MonoBehaviour
 
     void ControlObjectAble(bool state)
 	{
-        
+        if(!state)
+            controls = GameObject.FindGameObjectsWithTag("control");
         foreach (var c in controls)
             c.SetActive(state);
 	}
