@@ -83,3 +83,8 @@ MetaToon/Logs
 MetaToon/obj
 
 # End of https://www.toptal.com/developers/gitignore/api/unity
+
+# JS_TEST WebGL build files
+js_test/public/Build
+js_test/public/StreamingAssets
+js_test/public/TemplateData

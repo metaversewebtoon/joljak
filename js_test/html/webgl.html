@@ -11,8 +11,8 @@
 
   <style>
     #canvas-wrap {
-      width: 1600px; /* 원하는 가로 크기 */
-      height: 900px; /* 원하는 세로 크기 */
+      width: 1200px; /* 원하는 가로 크기 */
+      height: 720px; /* 원하는 세로 크기 */
     }
     #editorButton {
       background-color: rgba(137 137 137 / 72%); /* 배경색을 검은색으로 설정 */
@@ -20,8 +20,11 @@
       font-size: 18px;
       border: none; /* 테두리 제거 */
       padding: 20px 14px;
-      margin: 45px;
+      margin: 20px;
   }
+    #unity-fullscreen-button {
+      display: none;
+    }
   </style>
 </head>
 
@@ -43,9 +46,10 @@
       <canvas id="unity-canvas"></canvas>
     </div>
     <div id="unity-loading-bar">
-      <div id="unity-logo"></div>
+      <div id="unity-logo"></div>l
       <div id="unity-progress-bar-empty">
         <div id="unity-progress-bar-full"></div>
+        <div id="unity-fullscreen-button"></div>
       </div>
     </div>
     <div id="unity-warning"> </div>
